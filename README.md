@@ -28,7 +28,7 @@ Cấu trúc file tuân thủ chính xác 100% theo bảng phân công công vi�
 | **Thành viên B** | Bộ giải SAT (DPLL) & Thực nghiệm | Cài đặt DPLL gồm unit propagation, conflict detection, chọn biến xác định, đệ quy và backtracking, hỗ trợ assumptions, thống kê decisions / propagations / backtracks / runtime. Viết unit test (kể cả ví dụ trang 4). Viết script benchmark trên puzzle 3x3, 4x4, 5x5, xuất CSV và biểu đồ. | `sat/dpll.py`<br>`tests/test_dpll.py`<br>`experiments/run_benchmarks.py` |
 | **Thành viên C** | CNF Encoder | Ánh xạ biến $C_i$ xác định, validate clue, mã hoá 6 clue sang CNF bằng direct combinatorial encoding, cài 2 extension (PARITY, COMPARE, CORNERS), thêm unit clause cho verdict đã biết, hàm `build_kb(t)`, thống kê biến và clause. Test encoder so với evaluator bằng brute force $2^n$ assignment. | `logic/var_map.py`<br>`logic/encoder.py`<br>`logic/kb.py`<br>`tests/test_encoder.py` |
 | **Thành viên D** | Game Engine, Clue model & Bộ puzzle | Dataclass `Clue` và `Region` (row, col, neighbors, explicit, corners), parser JSON, semantic evaluator cho 6 clue và extension, GameEngine (`submit_verdict` trả ACCEPTED / NOT_PROVABLE / CONTRADICTED, reveal), PublicState. Tạo bộ puzzle 3x3, 4x4, 5x5 và kiểm tra nghiệm duy nhất. | `engine/clue.py`<br>`engine/region.py`<br>`engine/evaluator.py`<br>`engine/game_engine.py`<br>`puzzles/*.json` |
-| **Thành viên E** | GUI & Video demo | Dựng GUI Web bằng React & Tkinter Desktop hiển thị lưới, toạ độ, tên và nghề, thẻ úp/lật chuẩn đồ họa gốc. Cho phép gọi CRIMINAL / INNOCENT, hiển thị NOT_PROVABLE / CONTRADICTED, chọn clue và highlight ô liên quan, các nút Load / Restart / Hint / Auto Solve, nối GUI với Engine và Agent qua Python API server. Kịch bản quay video demo 5-10 phút. | `web/` (React App)<br>`gui/web_server.py`<br>`gui/app.py`<br>`gui/renderer.py`<br>`gui/widgets.py`<br>`demo_script.md` |
+| **Thành viên E** | GUI & Video demo | Dựng Modern GUI hiển thị lưới, toạ độ, tên và nghề, thẻ úp/lật chuẩn đồ họa gốc (Dark theme, procedural SVG avatars). Cho phép gọi CRIMINAL / INNOCENT, hiển thị NOT_PROVABLE / CONTRADICTED, chọn clue và highlight ô liên quan, các nút Load / Restart / Hint / Auto Solve, nối GUI với Engine và Agent qua Python API server. Kịch bản quay video demo 5-10 phút. | `web/` (React Modern GUI)<br>`gui/app.py`<br>`gui/web_server.py`<br>`demo_script.md` |
 
 ---
 
@@ -36,9 +36,8 @@ Cấu trúc file tuân thủ chính xác 100% theo bảng phân công công vi�
 
 ### 3.1. Yêu cầu hệ thống
 * **Python**: Khuyến nghị Python 3.9 trở lên (đã kiểm thử tương thích hoàn hảo trên Python 3.11).
-* **Tkinter**: Đi kèm sẵn trong bản cài đặt chuẩn Python trên Windows và macOS. 
-  *(Trên Ubuntu/Linux, cài thêm nếu thiếu: `sudo apt-get install python3-tk`)*
-* **Matplotlib**: Dùng để vẽ biểu đồ trực quan hóa kết quả thực nghiệm.
+* **Matplotlib**: Dùng để vẽ biểu đồ trực quan hóa kết quả thực nghiệm benchmark.
+* **Web Client**: Đã được biên dịch sẵn trong `web/dist`, chạy trực tiếp thông qua Python HTTP server mà không bắt buộc cài đặt Node.js hay npm.
 
 ### 3.2. Cài đặt thư viện
 Mở terminal tại thư mục gốc của project và chạy lệnh:
@@ -52,27 +51,23 @@ pip install -r requirements.txt
 
 ### 4.1. Khởi chạy Giao diện Đồ họa (GUI Mode)
 
-#### Cách 1: Chạy Web GUI bằng React (Giao diện hiện đại, chuẩn đồ họa gốc)
-Chỉ cần chạy lệnh sau từ thư mục gốc, hệ thống sẽ khởi động máy chủ tích hợp sẵn trong Python và tự động mở trình duyệt:
+Chỉ cần chạy lệnh sau từ thư mục gốc, hệ thống sẽ tự động khởi động máy chủ API tích hợp trong Python và mở giao diện người dùng trên trình duyệt:
 ```bash
 python main.py
 ```
-Ứng dụng web React sẽ hiển thị tại: `http://localhost:8000` với đồ họa chuẩn theo phiên bản gốc `knotwise.games/games/griductive` (tông màu Dark Espresso, avatar vector từng nhân vật, hoạt ảnh lật thẻ 3D, hiệu ứng spotlight hint và thanh công cụ tiện ích).
+Hoặc:
+```bash
+python gui/app.py
+```
+Ứng dụng web hiển thị tại: `http://localhost:8000` với đồ họa chuẩn theo phiên bản gốc `knotwise.games/games/griductive`:
+* Tông màu Dark Espresso thanh lịch, thẻ bo tròn sang trọng.
+* 100% vector SVG procedural avatar với kiểu tóc (ngắn, dài, búi, xoăn, spiky, bob), màu tóc, màu da, áo và biểu cảm phong phú.
+* Hoạt ảnh lật thẻ mượt mà, hiệu ứng spotlight hint và thanh công cụ tiện ích đầy đủ.
 
 *Nếu muốn phát triển / chạy hot-reload React dev server:*
 ```bash
 cd web
 npm run dev
-```
-
-#### Cách 2: Chạy Desktop GUI bằng Tkinter
-Nếu muốn mở giao diện cửa sổ Desktop truyền thống:
-```bash
-python main.py --desktop
-```
-Hoặc mở trực tiếp file câu đố cụ thể:
-```bash
-python main.py --desktop --puzzle puzzles/puzzle_4x4_1.json
 ```
 
 **Các thao tác trên GUI:**

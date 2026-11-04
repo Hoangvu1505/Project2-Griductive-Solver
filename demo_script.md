@@ -36,18 +36,20 @@
 #### [1:00 - 3:00] Phần 2: Giới thiệu Kiến trúc & Giao diện Đồ họa (GUI)
 * **Thao tác màn hình:**
   * Chạy lệnh `python main.py` trên terminal.
-  * Cửa sổ GUI Tkinter hiện lên với giao diện trực quan hiện đại.
+  * Cửa sổ trình duyệt tự động mở ra với Modern GUI tông màu Dark Espresso chuẩn trò chơi gốc `knotwise.games/games/griductive`.
   * Chỉ trỏ các thành phần:
     - Lưới bài $N \times N$, tọa độ cột (A, B, C...) và hàng (1, 2, 3...).
+    - Nhân vật đồ họa vector SVG đa dạng kiểu tóc (dài, ngắn, búi, xoăn), màu tóc, màu da và biểu cảm.
     - Thẻ nhân vật: hiển thị tọa độ, tên, nghề nghiệp.
-    - Thẻ úp (Face-down) với 2 nút tương tác `[+ Criminal]` và `[- Innocent]`.
-    - Thẻ mở (Face-up) hiển thị nhãn trạng thái (đỏ: Criminal, xanh: Innocent) và nội dung manh mối logic.
-    - Thanh điều khiển trên cùng: chọn màn chơi, Open File, Restart, Hint, Auto Solve (Step/All), Check Uniqueness.
-    - Cột bên phải: Thống kê trạng thái KB (số biến mệnh đề primary/aux, số mệnh đề CNF) và nhật ký suy diễn (Deduction Trace Log).
-    - Banner phản hồi bên dưới: hiển thị kết quả phán quyết hoặc thông báo từ chối.
+    - Thẻ úp (Face-down) cho phép nhấp chọn `Criminal` hoặc `Innocent`.
+    - Thẻ mở (Face-up) hiển thị mini avatar, nhãn trạng thái và nội dung manh mối logic.
+    - Thanh điều khiển trên cùng: chọn màn chơi, Restart, Hint, Auto Solve (Step/All), Check Uniqueness.
+    - Cột bên phải: Thống kê trạng thái KB (số biến mệnh đề primary/aux, số mệnh đề CNF) và nhật ký suy diễn (Deduction Trace Drawer).
+    - Banner phản hồi: hiển thị kết quả phán quyết hoặc thông báo từ chối.
 * **Lời thoại mẫu:**
-  > "Giao diện được xây dựng bằng Python Tkinter với thiết kế tối ưu, tách biệt hoàn toàn giữa Game Engine (sở hữu lời giải ẩn) và Logic Agent (chỉ nhận Public State gồm các thẻ và manh mối đã lật).
+  > "Giao diện được xây dựng hiện đại với thiết kế Dark Espresso chuẩn trò chơi gốc, kết nối trực tiếp với backend Python HTTP server. Kiến trúc tách biệt hoàn toàn giữa Game Engine (sở hữu lời giải ẩn) và Logic Agent (chỉ nhận Public State gồm các thẻ và manh mối đã lật).
   >
+  > Mọi nhân vật đều được render bằng SVG vector thuần với 12 kiểu tóc và 10 màu tóc, bảo đảm tính đa dạng và sắc nét tối đa."
   > Trên bàn chơi, ta có các tọa độ hàng và cột rõ ràng. Ban đầu, có một số thẻ được lật công khai để bắt đầu chuỗi suy luận. Các thẻ còn lại đều úp và tuyệt đối không làm lộ trạng thái bí mật."
 
 ---

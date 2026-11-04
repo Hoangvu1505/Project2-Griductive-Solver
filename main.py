@@ -1,8 +1,7 @@
 """
 Main Entry Point for Griductive Project.
 Supports:
-- Web GUI Mode (default): python main.py
-- Desktop Tkinter GUI Mode: python main.py --desktop
+- Web GUI Mode (default): python main.py [--port 8000]
 - CLI Solve Mode: python main.py --cli [--puzzle path/to/puzzle.json]
 - Benchmark Mode: python main.py --benchmark
 - Test Mode: python main.py --test
@@ -19,16 +18,8 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 def run_web_gui(port: int = 8000):
     """Launches the React Web GUI server and opens browser."""
-    from gui.web_server import start_server
-    print(f"[*] Starting Griductive Modern Web GUI on http://localhost:{port} ...")
-    start_server(port=port, open_browser=True)
-
-
-def run_desktop_gui(puzzle_path: str = None):
-    """Launches the Tkinter Graphical User Interface."""
-    from gui.app import GriductiveApp
-    app = GriductiveApp(default_puzzle_path=puzzle_path)
-    app.mainloop()
+    from gui.app import launch_gui
+    launch_gui(port=port, open_browser=True)
 
 
 def run_cli_solve(puzzle_path: str):
@@ -89,7 +80,6 @@ def run_tests():
 
 def main():
     parser = argparse.ArgumentParser(description="Griductive Propositional SAT Solver & GUI")
-    parser.add_argument("--desktop", action="store_true", help="Launch Tkinter desktop GUI instead of Web GUI")
     parser.add_argument("--port", type=int, default=8000, help="Port for web server (default: 8000)")
     parser.add_argument("--cli", action="store_true", help="Run solver in command-line mode without GUI")
     parser.add_argument("--puzzle", type=str, default=None, help="Path to puzzle JSON file")
@@ -105,8 +95,6 @@ def main():
     elif args.cli:
         puzzle = args.puzzle or os.path.join("puzzles", "puzzle_3x3_1.json")
         run_cli_solve(puzzle)
-    elif args.desktop:
-        run_desktop_gui(args.puzzle)
     else:
         run_web_gui(args.port)
 
