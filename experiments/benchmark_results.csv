@@ -1,0 +1,6 @@
+puzzle_file,grid_size,n,status,primary_vars,aux_vars,total_vars,initial_clauses,final_clauses,sat_calls,decisions,propagations,backtracks,deduction_steps,total_runtime_ms,sat_runtime_ms
+puzzle_3x3_1.json,3x3,3,SUCCESS,9,0,9,5,28,16,0,102,0,8,2.66,0.82
+puzzle_3x3_2.json,3x3,3,SUCCESS,9,0,9,8,36,14,0,84,0,7,2.42,0.8
+puzzle_4x4_1.json,4x4,4,SUCCESS,16,0,16,12,76,76,0,746,0,14,13.45,7.73
+puzzle_4x4_2.json,4x4,4,SUCCESS,16,0,16,12,77,42,0,418,0,14,12.82,6.22
+puzzle_5x5_1.json,5x5,5,SUCCESS,25,0,25,19,146,64,1,998,0,23,49.56,25.32

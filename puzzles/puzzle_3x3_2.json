@@ -1,0 +1,158 @@
+{
+  "size": 3,
+  "name": "The Manor Case (3x3)",
+  "characters": [
+    {
+      "coord": "A1",
+      "name": "Arthur",
+      "profession": "Lord",
+      "status": "CRIMINAL",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_A1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 1
+          }
+        },
+        "text": "Row 1 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Bella",
+      "profession": "Cook",
+      "status": "CRIMINAL",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "B1",
+          "target2": "C1"
+        },
+        "text": "Bella and Charles have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Charles",
+      "profession": "Gardener",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C1",
+          "target2": "A2"
+        },
+        "text": "Charles and Diana have the SAME status."
+      }
+    },
+    {
+      "coord": "A2",
+      "name": "Diana",
+      "profession": "Maid",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "A2",
+          "target2": "B2"
+        },
+        "text": "Diana and Ethan have the SAME status."
+      }
+    },
+    {
+      "coord": "B2",
+      "name": "Ethan",
+      "profession": "Butler",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "ROW",
+            "param": 2
+          }
+        },
+        "text": "Row 2 contains exactly 1 criminal."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "Fiona",
+      "profession": "Governess",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C2",
+          "target2": "A3"
+        },
+        "text": "Fiona and George have the SAME status."
+      }
+    },
+    {
+      "coord": "A3",
+      "name": "George",
+      "profession": "Chauffeur",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A3",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A3",
+          "target2": "B3"
+        },
+        "text": "George and Harry have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "B3",
+      "name": "Harry",
+      "profession": "Stablehand",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B3",
+        "clue_type": "PARITY",
+        "params": {
+          "parity": "ODD",
+          "region": {
+            "region_type": "CORNERS"
+          }
+        },
+        "text": "The number of criminals among the 4 CORNERS is ODD."
+      }
+    },
+    {
+      "coord": "C3",
+      "name": "Iris",
+      "profession": "Guest",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C3",
+        "clue_type": "FACT",
+        "params": {
+          "target": "C3",
+          "status": "CRIMINAL"
+        },
+        "text": "Iris is a CRIMINAL."
+      }
+    }
+  ]
+}

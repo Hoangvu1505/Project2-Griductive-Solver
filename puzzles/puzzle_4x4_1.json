@@ -1,0 +1,277 @@
+{
+  "size": 4,
+  "name": "Knotwise Daily Case (4x4)",
+  "characters": [
+    {
+      "coord": "A1",
+      "name": "Alan",
+      "profession": "Mechanic",
+      "status": "CRIMINAL",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_A1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 1
+          }
+        },
+        "text": "Row 1 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Brian",
+      "profession": "Painter",
+      "status": "CRIMINAL",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B1",
+          "target2": "B2"
+        },
+        "text": "Brian and Fern have the SAME status."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Clara",
+      "profession": "Painter",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C1",
+        "clue_type": "FACT",
+        "params": {
+          "target": "C1",
+          "status": "INNOCENT"
+        },
+        "text": "Clara is INNOCENT."
+      }
+    },
+    {
+      "coord": "D1",
+      "name": "Dana",
+      "profession": "Operator",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D1",
+        "clue_type": "FACT",
+        "params": {
+          "target": "D1",
+          "status": "INNOCENT"
+        },
+        "text": "Dana is INNOCENT."
+      }
+    },
+    {
+      "coord": "A2",
+      "name": "Evan",
+      "profession": "Mechanic",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 2
+          }
+        },
+        "text": "Row 2 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B2",
+      "name": "Fern",
+      "profession": "Tester",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B2",
+          "target2": "C2"
+        },
+        "text": "Fern and Gina have the SAME status."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "Gina",
+      "profession": "Painter",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C2",
+          "target2": "C3"
+        },
+        "text": "Gina and Kate have the SAME status."
+      }
+    },
+    {
+      "coord": "D2",
+      "name": "Hannah",
+      "profession": "Operator",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "D2",
+          "target2": "A3"
+        },
+        "text": "Hannah and Ivy have the SAME status."
+      }
+    },
+    {
+      "coord": "A3",
+      "name": "Ivy",
+      "profession": "Clerk",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A3",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "A"
+          }
+        },
+        "text": "Column A has exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B3",
+      "name": "June",
+      "profession": "Tester",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B3",
+          "target2": "D2"
+        },
+        "text": "June and Hannah have the SAME status."
+      }
+    },
+    {
+      "coord": "C3",
+      "name": "Kate",
+      "profession": "Driver",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C3",
+          "target2": "D3"
+        },
+        "text": "Kate and Lena have the SAME status."
+      }
+    },
+    {
+      "coord": "D3",
+      "name": "Lena",
+      "profession": "Cleaner",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "D3",
+          "target2": "D4"
+        },
+        "text": "Lena and Paul have the SAME status."
+      }
+    },
+    {
+      "coord": "A4",
+      "name": "Mara",
+      "profession": "Driver",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 4
+          }
+        },
+        "text": "Row 4 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B4",
+      "name": "Noah",
+      "profession": "Clerk",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B4",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B4",
+          "target2": "A2"
+        },
+        "text": "Noah and Evan have the SAME status."
+      }
+    },
+    {
+      "coord": "C4",
+      "name": "Owen",
+      "profession": "Clerk",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 3
+          }
+        },
+        "text": "Row 3 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "D4",
+      "name": "Paul",
+      "profession": "Tester",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D4",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "D4",
+          "target2": "B4"
+        },
+        "text": "Paul and Noah have DIFFERENT statuses."
+      }
+    }
+  ]
+}

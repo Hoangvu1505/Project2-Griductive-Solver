@@ -1,0 +1,423 @@
+{
+  "size": 5,
+  "name": "The Metropolis Conspiracy (5x5)",
+  "characters": [
+    {
+      "coord": "A1",
+      "name": "Aaron",
+      "profession": "Mayor",
+      "status": "CRIMINAL",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_A1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 3,
+          "region": {
+            "region_type": "ROW",
+            "param": 1
+          }
+        },
+        "text": "Row 1 contains exactly 3 criminals."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Bella",
+      "profession": "Judge",
+      "status": "INNOCENT",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B1",
+          "target2": "D1"
+        },
+        "text": "Bella and Daisy have the SAME status."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Caleb",
+      "profession": "Doctor",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C1",
+          "target2": "E1"
+        },
+        "text": "Caleb and Ethan have the SAME status."
+      }
+    },
+    {
+      "coord": "D1",
+      "name": "Daisy",
+      "profession": "Banker",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "D1",
+          "target2": "A2"
+        },
+        "text": "Daisy and Fiona have the SAME status."
+      }
+    },
+    {
+      "coord": "E1",
+      "name": "Ethan",
+      "profession": "Sheriff",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "E1",
+          "target2": "B2"
+        },
+        "text": "Ethan and Gavin have the SAME status."
+      }
+    },
+    {
+      "coord": "A2",
+      "name": "Fiona",
+      "profession": "Deputy",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 2
+          }
+        },
+        "text": "Row 2 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B2",
+      "name": "Gavin",
+      "profession": "Clerk",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B2",
+          "target2": "D2"
+        },
+        "text": "Gavin and Isaac have the SAME status."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "Hazel",
+      "profession": "Teacher",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C2",
+          "target2": "A2"
+        },
+        "text": "Hazel and Fiona have the SAME status."
+      }
+    },
+    {
+      "coord": "D2",
+      "name": "Isaac",
+      "profession": "Merchant",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D2",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "D2",
+          "target2": "E2"
+        },
+        "text": "Isaac and Jenna have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "E2",
+      "name": "Jenna",
+      "profession": "Pilot",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "E2",
+          "target2": "B3"
+        },
+        "text": "Jenna and Luna have the SAME status."
+      }
+    },
+    {
+      "coord": "A3",
+      "name": "Kevin",
+      "profession": "Farmer",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "A3",
+          "target2": "C3"
+        },
+        "text": "Kevin and Milo have the SAME status."
+      }
+    },
+    {
+      "coord": "B3",
+      "name": "Luna",
+      "profession": "Tailor",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B3",
+          "target2": "D3"
+        },
+        "text": "Luna and Nadia have the SAME status."
+      }
+    },
+    {
+      "coord": "C3",
+      "name": "Milo",
+      "profession": "Baker",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C3",
+          "target2": "E3"
+        },
+        "text": "Milo and Oliver have the SAME status."
+      }
+    },
+    {
+      "coord": "D3",
+      "name": "Nadia",
+      "profession": "Artist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D3",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 3,
+          "region": {
+            "region_type": "ROW",
+            "param": 3
+          }
+        },
+        "text": "Row 3 contains exactly 3 criminals."
+      }
+    },
+    {
+      "coord": "E3",
+      "name": "Oliver",
+      "profession": "Miner",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "E3",
+          "target2": "B4"
+        },
+        "text": "Oliver and Quinn have the SAME status."
+      }
+    },
+    {
+      "coord": "A4",
+      "name": "Piper",
+      "profession": "Sailor",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A4",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "A4",
+          "target2": "C4"
+        },
+        "text": "Piper and Riley have the SAME status."
+      }
+    },
+    {
+      "coord": "B4",
+      "name": "Quinn",
+      "profession": "Writer",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B4",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B4",
+          "target2": "D4"
+        },
+        "text": "Quinn and Stella have the SAME status."
+      }
+    },
+    {
+      "coord": "C4",
+      "name": "Riley",
+      "profession": "Scholar",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C4",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C4",
+          "target2": "E4"
+        },
+        "text": "Riley and Tyler have the SAME status."
+      }
+    },
+    {
+      "coord": "D4",
+      "name": "Stella",
+      "profession": "Driver",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 4
+          }
+        },
+        "text": "Row 4 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "E4",
+      "name": "Tyler",
+      "profession": "Florist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E4",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "E4",
+          "target2": "B5"
+        },
+        "text": "Tyler and Victor have the SAME status."
+      }
+    },
+    {
+      "coord": "A5",
+      "name": "Uma",
+      "profession": "Warden",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A5",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "A5",
+          "target2": "C5"
+        },
+        "text": "Uma and Wendy have the SAME status."
+      }
+    },
+    {
+      "coord": "B5",
+      "name": "Victor",
+      "profession": "Captain",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B5",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B5",
+          "target2": "D5"
+        },
+        "text": "Victor and Xavier have the SAME status."
+      }
+    },
+    {
+      "coord": "C5",
+      "name": "Wendy",
+      "profession": "Priest",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C5",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C5",
+          "target2": "E5"
+        },
+        "text": "Wendy and Yara have the SAME status."
+      }
+    },
+    {
+      "coord": "D5",
+      "name": "Xavier",
+      "profession": "Guard",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D5",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 3,
+          "region": {
+            "region_type": "ROW",
+            "param": 5
+          }
+        },
+        "text": "Row 5 contains exactly 3 criminals."
+      }
+    },
+    {
+      "coord": "E5",
+      "name": "Yara",
+      "profession": "Lawyer",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E5",
+        "clue_type": "PARITY",
+        "params": {
+          "parity": "EVEN",
+          "region": {
+            "region_type": "CORNERS"
+          }
+        },
+        "text": "The 4 corners have an EVEN count of criminals."
+      }
+    }
+  ]
+}

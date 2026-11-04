@@ -1,0 +1,6 @@
+# Griductive Solver Dependencies
+# Note: Tkinter is included in the standard Python installation on Windows and macOS.
+# For Linux: sudo apt-get install python3-tk
+
+matplotlib>=3.7.0
+

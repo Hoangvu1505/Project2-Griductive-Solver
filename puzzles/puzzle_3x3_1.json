@@ -1,0 +1,164 @@
+{
+  "size": 3,
+  "name": "The Village Mystery (3x3)",
+  "characters": [
+    {
+      "coord": "A1",
+      "name": "Abel",
+      "profession": "Cook",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A1",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A1",
+          "target2": "A2"
+        },
+        "text": "Abel and Derek (A2) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Bea",
+      "profession": "Guard",
+      "status": "INNOCENT",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 1
+          }
+        },
+        "text": "Row 1 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Clara",
+      "profession": "Detective",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C1",
+          "target2": "B2"
+        },
+        "text": "Clara and Eliza (B2) have the SAME status."
+      }
+    },
+    {
+      "coord": "A2",
+      "name": "Derek",
+      "profession": "Clerk",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "A2",
+          "target2": "C2"
+        },
+        "text": "Derek and Franz (C2) have the SAME status."
+      }
+    },
+    {
+      "coord": "B2",
+      "name": "Eliza",
+      "profession": "Doctor",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B2",
+          "target2": "A3"
+        },
+        "text": "Eliza and Grant (A3) have the SAME status."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "Franz",
+      "profession": "Farmer",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
+        "clue_type": "PARITY",
+        "params": {
+          "parity": "ODD",
+          "region": {
+            "region_type": "COL",
+            "param": "C"
+          }
+        },
+        "text": "Column C criminal count is ODD."
+      }
+    },
+    {
+      "coord": "A3",
+      "name": "Grant",
+      "profession": "Guard",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A3",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 0,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "B3"
+            ]
+          }
+        },
+        "text": "Hannah (B3) is INNOCENT."
+      }
+    },
+    {
+      "coord": "B3",
+      "name": "Hannah",
+      "profession": "Artist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B3",
+        "clue_type": "FACT",
+        "params": {
+          "target": "C3",
+          "status": "INNOCENT"
+        },
+        "text": "Ivy (C3) is INNOCENT."
+      }
+    },
+    {
+      "coord": "C3",
+      "name": "Ivy",
+      "profession": "Scholar",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C3",
+        "clue_type": "AT_LEAST",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "ROW",
+            "param": 3
+          }
+        },
+        "text": "Row 3 has at least 1 criminal."
+      }
+    }
+  ]
+}
