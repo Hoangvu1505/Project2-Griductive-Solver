@@ -5,8 +5,10 @@ import Card from './components/Card';
 import ActionModal from './components/ActionModal';
 import TraceDrawer from './components/TraceDrawer';
 import Toast from './components/Toast';
+import MainMenu from './components/MainMenu';
 
 export default function App() {
+  const [currentView, setCurrentView] = useState('menu'); // 'menu' | 'game'
   const [puzzles, setPuzzles] = useState([]);
   const [currentPuzzle, setCurrentPuzzle] = useState('puzzle_4x4_1.json');
   const [gameState, setGameState] = useState(null);
@@ -287,6 +289,23 @@ export default function App() {
     );
   }
 
+  // --- 1. RENDER MAIN MENU VIEW ---
+  if (currentView === 'menu') {
+    return (
+      <MainMenu
+        puzzles={puzzles}
+        currentPuzzle={currentPuzzle}
+        onSelectCase={(filename) => {
+          loadPuzzleState(filename);
+        }}
+        onStartPlaying={() => {
+          setCurrentView('game');
+        }}
+      />
+    );
+  }
+
+  // --- 2. RENDER ACTIVE GAME INVESTIGATION VIEW ---
   const { size = 3, cells = [], cards = {} } = gameState;
 
   // Grid styling based on dimensions (3x3, 4x4, 5x5)
@@ -302,6 +321,7 @@ export default function App() {
         puzzles={puzzles}
         currentPuzzle={currentPuzzle}
         onSelectPuzzle={loadPuzzleState}
+        onBackToMenu={() => setCurrentView('menu')}
         timerSeconds={timerSeconds}
         isPaused={isPaused}
         onTogglePause={() => setIsPaused(!isPaused)}
@@ -319,6 +339,7 @@ export default function App() {
           onAutoStep={handleAutoStep}
           onAutoSolveAll={handleToggleAutoSolveAll}
           onRestart={handleRestart}
+          onBackToMenu={() => setCurrentView('menu')}
           isAutoSolving={isAutoSolving}
         />
 

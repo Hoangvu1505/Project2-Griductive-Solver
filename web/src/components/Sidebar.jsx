@@ -7,6 +7,7 @@ export default function Sidebar({
   onAutoStep,
   onAutoSolveAll,
   onRestart,
+  onBackToMenu,
   isAutoSolving = false
 }) {
   const { current_puzzle, size = 3, proved_count = 0, total_cells = 9, stats = {}, is_won = false } = gameState || {};
@@ -33,14 +34,24 @@ export default function Sidebar({
           </div>
         </div>
 
-        {/* Level & Date Badges */}
-        <div className="flex items-center gap-2 mb-4 text-[10px] font-semibold text-[#8f8378] uppercase tracking-wider">
-          <span className="bg-[#26211d] border border-[#383029] px-2 py-0.5 rounded">
-            SIZE {size}x{size}
-          </span>
-          <span className="bg-[#26211d] border border-[#383029] px-2 py-0.5 rounded">
-            LEVEL ●●●○○○○
-          </span>
+        {/* Level & Return to Menu Badges */}
+        <div className="flex items-center justify-between mb-4 text-[10px] font-semibold text-[#8f8378] uppercase tracking-wider">
+          <div className="flex items-center gap-1.5">
+            <span className="bg-[#26211d] border border-[#383029] px-2 py-0.5 rounded">
+              SIZE {size}x{size}
+            </span>
+            <span className="bg-[#26211d] border border-[#383029] px-2 py-0.5 rounded">
+              LEVEL {size === 3 ? 'EASY' : size === 4 ? 'DAILY' : 'HARD'}
+            </span>
+          </div>
+
+          <button
+            onClick={onBackToMenu}
+            title="Return to Main Menu"
+            className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#2a231d] hover:bg-[#382f27] text-[#c9bfb4] border border-[#3d332a] transition-all cursor-pointer font-sans"
+          >
+            <span>← Menu</span>
+          </button>
         </div>
 
         {/* How to Play Box (matching the original text) */}

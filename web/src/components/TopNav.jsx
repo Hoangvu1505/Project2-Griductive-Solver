@@ -5,6 +5,7 @@ export default function TopNav({
   puzzles = [],
   currentPuzzle = '',
   onSelectPuzzle,
+  onBackToMenu,
   timerSeconds = 0,
   isPaused = false,
   onTogglePause,
@@ -20,13 +21,22 @@ export default function TopNav({
 
   return (
     <header className="w-full bg-[#161311] border-b border-[#2b2520] px-3 md:px-6 py-2.5 flex items-center justify-between text-[#d6cec6] text-xs md:text-sm select-none">
-      {/* Left: Brand */}
-      <div className="flex items-center gap-2 font-medium cursor-pointer hover:text-white transition-colors">
-        <ChevronLeft className="w-4 h-4 text-[#8a7f74]" />
+      {/* Left: Brand & Return to Menu */}
+      <button
+        onClick={onBackToMenu}
+        title="Return to Main Menu"
+        className="flex items-center gap-2 font-medium hover:text-white transition-colors group cursor-pointer"
+      >
+        <div className="p-1 rounded-md bg-[#231e1a] border border-[#383029] group-hover:border-[#5a4f44]">
+          <ChevronLeft className="w-3.5 h-3.5 text-[#8a7f74] group-hover:text-amber-400 transition-colors" />
+        </div>
         <span className="font-serif font-bold text-base md:text-lg tracking-tight text-[#f2ece6]">
           Griductive
         </span>
-      </div>
+        <span className="text-[10px] font-sans px-1.5 py-0.5 rounded bg-[#251e19] text-[#9c8f82] border border-[#382e26] hidden sm:inline">
+          Menu
+        </span>
+      </button>
 
       {/* Center: Level Selector Tabs (MON EASY 1 2 3 4 5 SUN HARD) */}
       <div className="hidden sm:flex items-center bg-[#231e1a] border border-[#383029] rounded-lg p-1 text-[11px] gap-1">
