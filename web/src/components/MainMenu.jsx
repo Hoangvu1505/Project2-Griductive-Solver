@@ -3,7 +3,6 @@ import Avatar from './Avatar';
 import {
   Play,
   HelpCircle,
-  BarChart3,
   Users,
   CheckCircle2,
   ShieldAlert,
@@ -23,7 +22,7 @@ export default function MainMenu({
   onSelectCase,
   onStartPlaying
 }) {
-  const [activeTab, setActiveTab] = useState('cases'); // 'cases' | 'rules' | 'benchmarks' | 'about'
+  const [activeTab, setActiveTab] = useState('cases'); // 'cases' | 'rules' | 'about'
 
   // Metadata enrichment for case cards
   const getPuzzleMeta = (filename, size) => {
@@ -190,18 +189,6 @@ export default function MainMenu({
           </button>
 
           <button
-            onClick={() => setActiveTab('benchmarks')}
-            className={`px-3 py-1.5 rounded-lg font-medium transition-all flex items-center gap-1.5 ${
-              activeTab === 'benchmarks'
-                ? 'bg-[#3b342e] text-[#f5efe9] shadow-xs border border-[#524940]'
-                : 'text-[#9c8f82] hover:text-[#ded6cf]'
-            }`}
-          >
-            <BarChart3 className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Benchmarks</span>
-          </button>
-
-          <button
             onClick={() => setActiveTab('about')}
             className={`px-3 py-1.5 rounded-lg font-medium transition-all flex items-center gap-1.5 ${
               activeTab === 'about'
@@ -245,7 +232,7 @@ export default function MainMenu({
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-semibold text-sm shadow-lg shadow-amber-950/60 border border-amber-400/40 transition-all transform active:scale-95 cursor-pointer"
                   >
                     <Play className="w-4 h-4 fill-white" />
-                    <span>Investigate Daily Case (4x4)</span>
+                    <span>Investigate Daily Case</span>
                   </button>
 
                   <button
@@ -464,153 +451,7 @@ export default function MainMenu({
           </div>
         )}
 
-        {/* --- TAB 3: BENCHMARKS & DPLL PERFORMANCE --- */}
-        {activeTab === 'benchmarks' && (
-          <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
-            <div className="text-center max-w-xl mx-auto mb-6">
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#f5efe9]">
-                DPLL SAT Solver Benchmarks
-              </h2>
-              <p className="text-sm text-[#9c8f82] mt-1">
-                Empirical evaluation across 3x3, 4x4, and 5x5 Griductive puzzle instances.
-              </p>
-            </div>
-
-            {/* Benchmark Table */}
-            <div className="bg-[#1b1613] border border-[#332a23] rounded-xl overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs">
-                  <thead className="bg-[#241d18] text-[#9c8f82] uppercase text-[10px] tracking-wider border-b border-[#382f28]">
-                    <tr>
-                      <th className="p-3">Puzzle Case</th>
-                      <th className="p-3">Grid Size</th>
-                      <th className="p-3">Total Steps</th>
-                      <th className="p-3">SAT Queries</th>
-                      <th className="p-3">Unit Props</th>
-                      <th className="p-3">Solve Time</th>
-                      <th className="p-3">Result</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#2d251f] text-[#ded6cf]">
-                    <tr className="hover:bg-[#241e19]">
-                      <td className="p-3 font-semibold text-[#f0ebe5]">The Village Mystery</td>
-                      <td className="p-3 font-mono">3 × 3</td>
-                      <td className="p-3 font-mono">8</td>
-                      <td className="p-3 font-mono">16</td>
-                      <td className="p-3 font-mono">102</td>
-                      <td className="p-3 font-mono text-emerald-400">0.003s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                    <tr className="hover:bg-[#241e19]">
-                      <td className="p-3 font-semibold text-[#f0ebe5]">The Secret Circle</td>
-                      <td className="p-3 font-mono">3 × 3</td>
-                      <td className="p-3 font-mono">8</td>
-                      <td className="p-3 font-mono">14</td>
-                      <td className="p-3 font-mono">84</td>
-                      <td className="p-3 font-mono text-emerald-400">0.002s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                    <tr className="hover:bg-[#241e19]">
-                      <td className="p-3 font-semibold text-[#f0ebe5]">The Harbor Theft</td>
-                      <td className="p-3 font-mono">3 × 3</td>
-                      <td className="p-3 font-mono">8</td>
-                      <td className="p-3 font-mono">32</td>
-                      <td className="p-3 font-mono">219</td>
-                      <td className="p-3 font-mono text-emerald-400">0.004s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                    <tr className="hover:bg-[#241e19] bg-amber-950/20">
-                      <td className="p-3 font-semibold text-amber-200">Knotwise Daily Case</td>
-                      <td className="p-3 font-mono">4 × 4</td>
-                      <td className="p-3 font-mono">14</td>
-                      <td className="p-3 font-mono">76</td>
-                      <td className="p-3 font-mono">746</td>
-                      <td className="p-3 font-mono text-emerald-400">0.013s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                    <tr className="hover:bg-[#241e19]">
-                      <td className="p-3 font-semibold text-[#f0ebe5]">Royal Castle Intrigue</td>
-                      <td className="p-3 font-mono">4 × 4</td>
-                      <td className="p-3 font-mono">14</td>
-                      <td className="p-3 font-mono">42</td>
-                      <td className="p-3 font-mono">418</td>
-                      <td className="p-3 font-mono text-emerald-400">0.013s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                    <tr className="hover:bg-[#241e19]">
-                      <td className="p-3 font-semibold text-[#f0ebe5]">The Midnight Express</td>
-                      <td className="p-3 font-mono">4 × 4</td>
-                      <td className="p-3 font-mono">14</td>
-                      <td className="p-3 font-mono">34</td>
-                      <td className="p-3 font-mono">355</td>
-                      <td className="p-3 font-mono text-emerald-400">0.012s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                    <tr className="hover:bg-[#241e19]">
-                      <td className="p-3 font-semibold text-[#f0ebe5]">The Grand Hotel Enigma</td>
-                      <td className="p-3 font-mono">4 × 4</td>
-                      <td className="p-3 font-mono">14</td>
-                      <td className="p-3 font-mono">30</td>
-                      <td className="p-3 font-mono">318</td>
-                      <td className="p-3 font-mono text-emerald-400">0.011s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                    <tr className="hover:bg-[#241e19]">
-                      <td className="p-3 font-semibold text-[#f0ebe5]">Metropolis Conspiracy</td>
-                      <td className="p-3 font-mono">5 × 5</td>
-                      <td className="p-3 font-mono">23</td>
-                      <td className="p-3 font-mono">64</td>
-                      <td className="p-3 font-mono">998</td>
-                      <td className="p-3 font-mono text-emerald-400">0.050s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                    <tr className="hover:bg-[#241e19]">
-                      <td className="p-3 font-semibold text-[#f0ebe5]">The University Syndicate</td>
-                      <td className="p-3 font-mono">5 × 5</td>
-                      <td className="p-3 font-mono">23</td>
-                      <td className="p-3 font-mono">46</td>
-                      <td className="p-3 font-mono">812</td>
-                      <td className="p-3 font-mono text-emerald-400">0.063s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                    <tr className="hover:bg-[#241e19]">
-                      <td className="p-3 font-semibold text-[#f0ebe5]">The Cyberpunk Underground</td>
-                      <td className="p-3 font-mono">5 × 5</td>
-                      <td className="p-3 font-mono">23</td>
-                      <td className="p-3 font-mono">46</td>
-                      <td className="p-3 font-mono">772</td>
-                      <td className="p-3 font-mono text-emerald-400">0.050s</td>
-                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Performance Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="p-4 rounded-xl bg-[#1e1814] border border-[#382f28] text-center">
-                <span className="text-[10px] uppercase font-bold text-[#8c8074]">100% Solvability</span>
-                <p className="text-xl font-bold text-emerald-400 mt-1">0 Failures</p>
-                <p className="text-[11px] text-[#9c8f82] mt-0.5">All 10 cases uniquely solvable with no guessing.</p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-[#1e1814] border border-[#382f28] text-center">
-                <span className="text-[10px] uppercase font-bold text-[#8c8074]">Average Runtime</span>
-                <p className="text-xl font-bold text-amber-300 mt-1">&lt; 40 ms</p>
-                <p className="text-[11px] text-[#9c8f82] mt-0.5">Near instantaneous SAT solving per deduction step.</p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-[#1e1814] border border-[#382f28] text-center">
-                <span className="text-[10px] uppercase font-bold text-[#8c8074]">SAT Model Verification</span>
-                <p className="text-xl font-bold text-cyan-300 mt-1">Unique (1)</p>
-                <p className="text-[11px] text-[#9c8f82] mt-0.5">Blocking clauses confirm no alternative solutions exist.</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* --- TAB 4: ABOUT & TEAM DISTRIBUTION --- */}
+        {/* --- TAB 3: ABOUT & TEAM DISTRIBUTION --- */}
         {activeTab === 'about' && (
           <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
             <div className="text-center max-w-xl mx-auto mb-6">
