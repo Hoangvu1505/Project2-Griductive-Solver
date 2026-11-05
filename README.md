@@ -9,6 +9,8 @@
 
 Quy tắc cốt lõi: **TUYỆT ĐỐI KHÔNG ĐOÁN MÒ (NO GUESSING)**. Một phán quyết chỉ được hệ thống chấp nhận khi và chỉ khi nó được suy diễn kéo theo logic ($KB_t \models C_i$ hoặc $KB_t \models \neg C_i$) từ các thông tin công khai hiện tại.
 
+> 📖 **Hướng dẫn chi tiết**: Xem luật chơi, ý nghĩa các loại manh mối và ví dụ một ván suy luận mẫu tại file [**`cachchoi.md`**](cachchoi.md).
+
 Dự án này triển khai toàn diện:
 1. **Mã hóa logic mệnh đề & CNF Encoder**: chuyển đổi tự động 6 dạng manh mối chuẩn (`FACT`, `SAME`, `DIFFERENT`, `EXACTLY`, `AT_LEAST`, `AT_MOST`) cùng các phần mở rộng (`PARITY`, `COMPARE`, vùng nâng cao `CORNERS`, `COMMON_NEIGHBORS`).
 2. **Bộ giải SAT DPLL**: thuật toán Davis-Putnam-Logemann-Loveland hoàn chỉnh với lan truyền đơn vị (unit propagation), phát hiện xung đột (conflict detection), chọn biến xác định, đệ quy & quay lui, ghi nhận thống kê.
