@@ -1,0 +1,430 @@
+{
+  "size": 5,
+  "name": "The Cyberpunk Underground (5x5)",
+  "characters": [
+    {
+      "coord": "A1",
+      "name": "Akira",
+      "profession": "Hacker",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A1",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A1",
+          "target2": "A2"
+        },
+        "text": "Akira and Falcon (A2) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Blaze",
+      "profession": "Runner",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B1",
+          "target2": "B2"
+        },
+        "text": "Blaze and Ghost (B2) have the SAME status."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Cypher",
+      "profession": "Fixer",
+      "status": "INNOCENT",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_C1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 1
+          }
+        },
+        "text": "Row 1 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "D1",
+      "name": "Dex",
+      "profession": "Netrunner",
+      "status": "INNOCENT",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_D1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "A1",
+          "target2": "B1"
+        },
+        "text": "Akira (A1) and Blaze (B1) have the SAME status."
+      }
+    },
+    {
+      "coord": "E1",
+      "name": "Echo",
+      "profession": "Infiltrator",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E1",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A1",
+          "target2": "E1"
+        },
+        "text": "Akira (A1) and Echo have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "A2",
+      "name": "Falcon",
+      "profession": "Drone Pilot",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 2
+          }
+        },
+        "text": "Row 2 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B2",
+      "name": "Ghost",
+      "profession": "Sniper",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B2",
+          "target2": "C2"
+        },
+        "text": "Ghost and Hex (C2) have the SAME status."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "Hex",
+      "profession": "Coder",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C2",
+          "target2": "C3"
+        },
+        "text": "Hex and Matrix (C3) have the SAME status."
+      }
+    },
+    {
+      "coord": "D2",
+      "name": "Iris",
+      "profession": "Analyst",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D2",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "D2",
+          "target2": "D3"
+        },
+        "text": "Iris and Neo (D3) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "E2",
+      "name": "Jinx",
+      "profession": "Mercenary",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 3
+          }
+        },
+        "text": "Row 3 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "A3",
+      "name": "Kai",
+      "profession": "Smuggler",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "A3",
+          "target2": "A4"
+        },
+        "text": "Kai and Pixel (A4) have the SAME status."
+      }
+    },
+    {
+      "coord": "B3",
+      "name": "Luna",
+      "profession": "Scout",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B3",
+          "target2": "B4"
+        },
+        "text": "Luna and Quantum (B4) have the SAME status."
+      }
+    },
+    {
+      "coord": "C3",
+      "name": "Matrix",
+      "profession": "AI Specialist",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C3",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "C3",
+          "target2": "C4"
+        },
+        "text": "Matrix and Raven (C4) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "D3",
+      "name": "Neo",
+      "profession": "Operative",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "D3",
+          "target2": "D4"
+        },
+        "text": "Neo and Shadow (D4) have the SAME status."
+      }
+    },
+    {
+      "coord": "E3",
+      "name": "Onyx",
+      "profession": "Enforcer",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E3",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 4
+          }
+        },
+        "text": "Row 4 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "A4",
+      "name": "Pixel",
+      "profession": "Techie",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A4",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A4",
+          "target2": "A5"
+        },
+        "text": "Pixel and Vector (A5) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "B4",
+      "name": "Quantum",
+      "profession": "Scientist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B4",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B4",
+          "target2": "B5"
+        },
+        "text": "Quantum and Wraith (B5) have the SAME status."
+      }
+    },
+    {
+      "coord": "C4",
+      "name": "Raven",
+      "profession": "Courier",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C4",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C4",
+          "target2": "C5"
+        },
+        "text": "Raven and Xander (C5) have the SAME status."
+      }
+    },
+    {
+      "coord": "D4",
+      "name": "Shadow",
+      "profession": "Assassin",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D4",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "D4",
+          "target2": "D5"
+        },
+        "text": "Shadow and Yuki (D5) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "E4",
+      "name": "Trinity",
+      "profession": "Leader",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 5
+          }
+        },
+        "text": "Row 5 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "A5",
+      "name": "Vector",
+      "profession": "Engineer",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A5",
+        "clue_type": "FACT",
+        "params": {
+          "target": "C1",
+          "status": "INNOCENT"
+        },
+        "text": "Cypher (C1) is INNOCENT."
+      }
+    },
+    {
+      "coord": "B5",
+      "name": "Wraith",
+      "profession": "Spy",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B5",
+        "clue_type": "FACT",
+        "params": {
+          "target": "D1",
+          "status": "INNOCENT"
+        },
+        "text": "Dex (D1) is INNOCENT."
+      }
+    },
+    {
+      "coord": "C5",
+      "name": "Xander",
+      "profession": "Mechanic",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C5",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "C"
+          }
+        },
+        "text": "Column C contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "D5",
+      "name": "Yuki",
+      "profession": "Medic",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D5",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "D"
+          }
+        },
+        "text": "Column D contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "E5",
+      "name": "Zero",
+      "profession": "Rogue",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E5",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "E"
+          }
+        },
+        "text": "Column E contains exactly 2 criminals."
+      }
+    }
+  ]
+}

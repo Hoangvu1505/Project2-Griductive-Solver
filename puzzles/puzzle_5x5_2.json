@@ -1,0 +1,436 @@
+{
+  "size": 5,
+  "name": "The University Syndicate (5x5)",
+  "characters": [
+    {
+      "coord": "A1",
+      "name": "Adrian",
+      "profession": "Dean",
+      "status": "INNOCENT",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_A1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 1
+          }
+        },
+        "text": "Row 1 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Beatrice",
+      "profession": "Librarian",
+      "status": "INNOCENT",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C1",
+          "target2": "E1"
+        },
+        "text": "Charles (C1) and Eric (E1) have the SAME status."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Charles",
+      "profession": "Professor",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C1",
+          "target2": "C2"
+        },
+        "text": "Charles and Hannah (C2) have the SAME status."
+      }
+    },
+    {
+      "coord": "D1",
+      "name": "Diana",
+      "profession": "Researcher",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D1",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "D1",
+          "target2": "E1"
+        },
+        "text": "Diana and Eric (E1) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "E1",
+      "name": "Eric",
+      "profession": "Scholar",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "E1",
+          "target2": "A2"
+        },
+        "text": "Eric and Fiona (A2) have the SAME status."
+      }
+    },
+    {
+      "coord": "A2",
+      "name": "Fiona",
+      "profession": "Botanist",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 2
+          }
+        },
+        "text": "Row 2 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B2",
+      "name": "Gabriel",
+      "profession": "Chemist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B2",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "B2",
+          "target2": "B3"
+        },
+        "text": "Gabriel and Laura (B3) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "Hannah",
+      "profession": "Historian",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "C"
+          }
+        },
+        "text": "Column C contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "D2",
+      "name": "Ian",
+      "profession": "Mathematician",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D2",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "D2",
+          "target2": "D3"
+        },
+        "text": "Ian and Nora (D3) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "E2",
+      "name": "Julia",
+      "profession": "Physicist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 3
+          }
+        },
+        "text": "Row 3 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "A3",
+      "name": "Kenneth",
+      "profession": "Astronomer",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A3",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A3",
+          "target2": "A4"
+        },
+        "text": "Kenneth and Penelope (A4) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "B3",
+      "name": "Laura",
+      "profession": "Biologist",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B3",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "B"
+          }
+        },
+        "text": "Column B contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "C3",
+      "name": "Marcus",
+      "profession": "Geologist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C3",
+          "target2": "C4"
+        },
+        "text": "Marcus and Rachel (C4) have the SAME status."
+      }
+    },
+    {
+      "coord": "D3",
+      "name": "Nora",
+      "profession": "Philosopher",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D3",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "D"
+          }
+        },
+        "text": "Column D contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "E3",
+      "name": "Oscar",
+      "profession": "Psychologist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E3",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "E3",
+          "target2": "E4"
+        },
+        "text": "Oscar and Theresa (E4) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "A4",
+      "name": "Penelope",
+      "profession": "Archivist",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 4
+          }
+        },
+        "text": "Row 4 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B4",
+      "name": "Quentin",
+      "profession": "Economist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B4",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "B4",
+          "target2": "B5"
+        },
+        "text": "Quentin and Valerie (B5) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "C4",
+      "name": "Rachel",
+      "profession": "Sociologist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 5
+          }
+        },
+        "text": "Row 5 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "D4",
+      "name": "Samuel",
+      "profession": "Linguist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D4",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "D4",
+          "target2": "D5"
+        },
+        "text": "Samuel and Xavier (D5) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "E4",
+      "name": "Theresa",
+      "profession": "Geneticist",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "E"
+          }
+        },
+        "text": "Column E contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "A5",
+      "name": "Ulysses",
+      "profession": "Registrar",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A5",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "A"
+          }
+        },
+        "text": "Column A contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B5",
+      "name": "Valerie",
+      "profession": "Technician",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B5",
+        "clue_type": "FACT",
+        "params": {
+          "target": "D1",
+          "status": "INNOCENT"
+        },
+        "text": "Diana (D1) is INNOCENT."
+      }
+    },
+    {
+      "coord": "C5",
+      "name": "Walter",
+      "profession": "Janitor",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C5",
+        "clue_type": "FACT",
+        "params": {
+          "target": "C5",
+          "status": "INNOCENT"
+        },
+        "text": "Walter is INNOCENT."
+      }
+    },
+    {
+      "coord": "D5",
+      "name": "Xavier",
+      "profession": "Security",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D5",
+        "clue_type": "FACT",
+        "params": {
+          "target": "D5",
+          "status": "CRIMINAL"
+        },
+        "text": "Xavier is CRIMINAL."
+      }
+    },
+    {
+      "coord": "E5",
+      "name": "Yvonne",
+      "profession": "Bursar",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_E5",
+        "clue_type": "FACT",
+        "params": {
+          "target": "A1",
+          "status": "INNOCENT"
+        },
+        "text": "Adrian (A1) is INNOCENT."
+      }
+    }
+  ]
+}

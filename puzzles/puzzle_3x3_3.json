@@ -1,0 +1,159 @@
+{
+  "size": 3,
+  "name": "The Harbor Theft (3x3)",
+  "characters": [
+    {
+      "coord": "A1",
+      "name": "Arthur",
+      "profession": "Captain",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "A1",
+          "target2": "A3"
+        },
+        "text": "Arthur and Gavin (A3) have the SAME status."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Bella",
+      "profession": "Merchant",
+      "status": "CRIMINAL",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "ROW",
+            "param": 1
+          }
+        },
+        "text": "Row 1 contains exactly 1 criminal."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Caleb",
+      "profession": "Sailor",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C1",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "C1",
+          "target2": "C2"
+        },
+        "text": "Caleb and Fiona (C2) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "A2",
+      "name": "Daisy",
+      "profession": "Dockworker",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A2",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A2",
+          "target2": "B2"
+        },
+        "text": "Daisy and Ethan (B2) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "B2",
+      "name": "Ethan",
+      "profession": "Clerk",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B2",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B2",
+          "target2": "C3"
+        },
+        "text": "Ethan and Isaac (C3) have the SAME status."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "Fiona",
+      "profession": "Smuggler",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 2
+          }
+        },
+        "text": "Row 2 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "A3",
+      "name": "Gavin",
+      "profession": "Fisherman",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A3",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A3",
+          "target2": "B3"
+        },
+        "text": "Gavin and Hazel (B3) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "B3",
+      "name": "Hazel",
+      "profession": "Navigator",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B3",
+        "clue_type": "FACT",
+        "params": {
+          "target": "C3",
+          "status": "INNOCENT"
+        },
+        "text": "Isaac (C3) is INNOCENT."
+      }
+    },
+    {
+      "coord": "C3",
+      "name": "Isaac",
+      "profession": "Diver",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C3",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "B"
+          }
+        },
+        "text": "Column B contains exactly 2 criminals."
+      }
+    }
+  ]
+}

@@ -35,7 +35,6 @@ export default function MainMenu({
           desc: 'A calm countryside village where simple rumors point directly to the culprit.',
           suspects: 9,
           criminals: 2,
-          cluesCount: 1,
           difficulty: '1 / 5'
         };
       case 'puzzle_3x3_2.json':
@@ -45,7 +44,15 @@ export default function MainMenu({
           desc: 'A secret meeting with interwoven parity and comparison clues between neighbors.',
           suspects: 9,
           criminals: 3,
-          cluesCount: 1,
+          difficulty: '1 / 5'
+        };
+      case 'puzzle_3x3_3.json':
+        return {
+          badge: 'CASUAL',
+          badgeColor: 'bg-cyan-950/80 text-cyan-400 border-cyan-800/60',
+          desc: 'The busy docklands harboring stolen cargo and interconnected sailors.',
+          suspects: 9,
+          criminals: 4,
           difficulty: '2 / 5'
         };
       case 'puzzle_4x4_1.json':
@@ -55,7 +62,6 @@ export default function MainMenu({
           desc: 'The canonical 16-suspect investigation with chained neighborhood deductions.',
           suspects: 16,
           criminals: 5,
-          cluesCount: 2,
           difficulty: '3 / 5',
           featured: true
         };
@@ -63,20 +69,54 @@ export default function MainMenu({
         return {
           badge: 'CHALLENGING',
           badgeColor: 'bg-purple-950/80 text-purple-300 border-purple-800/60',
-          desc: 'Court intrigue featuring exact row/column counts and parity constraints.',
+          desc: 'Royal castle intrigue featuring exact row/column counts and parity constraints.',
           suspects: 16,
           criminals: 6,
-          cluesCount: 2,
+          difficulty: '3 / 5'
+        };
+      case 'puzzle_4x4_3.json':
+        return {
+          badge: 'DETECTIVE',
+          badgeColor: 'bg-indigo-950/80 text-indigo-300 border-indigo-800/60',
+          desc: 'A luxury passenger train rolling through the night with a cascade of clues.',
+          suspects: 16,
+          criminals: 7,
+          difficulty: '4 / 5'
+        };
+      case 'puzzle_4x4_4.json':
+        return {
+          badge: 'HARD',
+          badgeColor: 'bg-orange-950/80 text-orange-300 border-orange-800/60',
+          desc: 'A grand ballroom diamond heist with alternating checkerboard logic.',
+          suspects: 16,
+          criminals: 8,
           difficulty: '4 / 5'
         };
       case 'puzzle_5x5_1.json':
         return {
-          badge: 'MASTER',
+          badge: 'EXPERT',
           badgeColor: 'bg-rose-950/80 text-rose-300 border-rose-800/60',
           desc: 'High-stakes metropolis grid requiring 25 deductive steps with multi-region clauses.',
           suspects: 25,
           criminals: 9,
-          cluesCount: 2,
+          difficulty: '5 / 5'
+        };
+      case 'puzzle_5x5_2.json':
+        return {
+          badge: 'MASTER',
+          badgeColor: 'bg-fuchsia-950/80 text-fuchsia-300 border-fuchsia-800/60',
+          desc: 'Campus conspiracy cascading row-by-row through professors and deans.',
+          suspects: 25,
+          criminals: 10,
+          difficulty: '5 / 5'
+        };
+      case 'puzzle_5x5_3.json':
+        return {
+          badge: 'GRANDMASTER',
+          badgeColor: 'bg-red-950/80 text-red-300 border-red-800/60',
+          desc: 'Futuristic underworld with cyberpunk fixers and a staircase ribbon pattern.',
+          suspects: 25,
+          criminals: 10,
           difficulty: '5 / 5'
         };
       default:
@@ -86,7 +126,6 @@ export default function MainMenu({
           desc: 'Custom puzzle investigation.',
           suspects: size * size,
           criminals: Math.floor((size * size) / 3),
-          cluesCount: 1,
           difficulty: '3 / 5'
         };
     }
@@ -458,7 +497,7 @@ export default function MainMenu({
                       <td className="p-3 font-mono">3 × 3</td>
                       <td className="p-3 font-mono">8</td>
                       <td className="p-3 font-mono">16</td>
-                      <td className="p-3 font-mono">18</td>
+                      <td className="p-3 font-mono">102</td>
                       <td className="p-3 font-mono text-emerald-400">0.003s</td>
                       <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
                     </tr>
@@ -466,9 +505,18 @@ export default function MainMenu({
                       <td className="p-3 font-semibold text-[#f0ebe5]">The Secret Circle</td>
                       <td className="p-3 font-mono">3 × 3</td>
                       <td className="p-3 font-mono">8</td>
-                      <td className="p-3 font-mono">16</td>
-                      <td className="p-3 font-mono">22</td>
-                      <td className="p-3 font-mono text-emerald-400">0.003s</td>
+                      <td className="p-3 font-mono">14</td>
+                      <td className="p-3 font-mono">84</td>
+                      <td className="p-3 font-mono text-emerald-400">0.002s</td>
+                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
+                    </tr>
+                    <tr className="hover:bg-[#241e19]">
+                      <td className="p-3 font-semibold text-[#f0ebe5]">The Harbor Theft</td>
+                      <td className="p-3 font-mono">3 × 3</td>
+                      <td className="p-3 font-mono">8</td>
+                      <td className="p-3 font-mono">32</td>
+                      <td className="p-3 font-mono">219</td>
+                      <td className="p-3 font-mono text-emerald-400">0.004s</td>
                       <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
                     </tr>
                     <tr className="hover:bg-[#241e19] bg-amber-950/20">
@@ -476,26 +524,62 @@ export default function MainMenu({
                       <td className="p-3 font-mono">4 × 4</td>
                       <td className="p-3 font-mono">14</td>
                       <td className="p-3 font-mono">76</td>
-                      <td className="p-3 font-mono">84</td>
-                      <td className="p-3 font-mono text-emerald-400">0.015s</td>
+                      <td className="p-3 font-mono">746</td>
+                      <td className="p-3 font-mono text-emerald-400">0.013s</td>
                       <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
                     </tr>
                     <tr className="hover:bg-[#241e19]">
                       <td className="p-3 font-semibold text-[#f0ebe5]">Royal Castle Intrigue</td>
                       <td className="p-3 font-mono">4 × 4</td>
                       <td className="p-3 font-mono">14</td>
-                      <td className="p-3 font-mono">68</td>
-                      <td className="p-3 font-mono">75</td>
-                      <td className="p-3 font-mono text-emerald-400">0.014s</td>
+                      <td className="p-3 font-mono">42</td>
+                      <td className="p-3 font-mono">418</td>
+                      <td className="p-3 font-mono text-emerald-400">0.013s</td>
+                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
+                    </tr>
+                    <tr className="hover:bg-[#241e19]">
+                      <td className="p-3 font-semibold text-[#f0ebe5]">The Midnight Express</td>
+                      <td className="p-3 font-mono">4 × 4</td>
+                      <td className="p-3 font-mono">14</td>
+                      <td className="p-3 font-mono">34</td>
+                      <td className="p-3 font-mono">355</td>
+                      <td className="p-3 font-mono text-emerald-400">0.012s</td>
+                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
+                    </tr>
+                    <tr className="hover:bg-[#241e19]">
+                      <td className="p-3 font-semibold text-[#f0ebe5]">The Grand Hotel Enigma</td>
+                      <td className="p-3 font-mono">4 × 4</td>
+                      <td className="p-3 font-mono">14</td>
+                      <td className="p-3 font-mono">30</td>
+                      <td className="p-3 font-mono">318</td>
+                      <td className="p-3 font-mono text-emerald-400">0.011s</td>
                       <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
                     </tr>
                     <tr className="hover:bg-[#241e19]">
                       <td className="p-3 font-semibold text-[#f0ebe5]">Metropolis Conspiracy</td>
                       <td className="p-3 font-mono">5 × 5</td>
                       <td className="p-3 font-mono">23</td>
-                      <td className="p-3 font-mono">142</td>
-                      <td className="p-3 font-mono">160</td>
-                      <td className="p-3 font-mono text-emerald-400">0.038s</td>
+                      <td className="p-3 font-mono">64</td>
+                      <td className="p-3 font-mono">998</td>
+                      <td className="p-3 font-mono text-emerald-400">0.050s</td>
+                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
+                    </tr>
+                    <tr className="hover:bg-[#241e19]">
+                      <td className="p-3 font-semibold text-[#f0ebe5]">The University Syndicate</td>
+                      <td className="p-3 font-mono">5 × 5</td>
+                      <td className="p-3 font-mono">23</td>
+                      <td className="p-3 font-mono">46</td>
+                      <td className="p-3 font-mono">812</td>
+                      <td className="p-3 font-mono text-emerald-400">0.063s</td>
+                      <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
+                    </tr>
+                    <tr className="hover:bg-[#241e19]">
+                      <td className="p-3 font-semibold text-[#f0ebe5]">The Cyberpunk Underground</td>
+                      <td className="p-3 font-mono">5 × 5</td>
+                      <td className="p-3 font-mono">23</td>
+                      <td className="p-3 font-mono">46</td>
+                      <td className="p-3 font-mono">772</td>
+                      <td className="p-3 font-mono text-emerald-400">0.050s</td>
                       <td className="p-3"><span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-800/60 px-2 py-0.5 rounded">SOLVED</span></td>
                     </tr>
                   </tbody>
@@ -508,7 +592,7 @@ export default function MainMenu({
               <div className="p-4 rounded-xl bg-[#1e1814] border border-[#382f28] text-center">
                 <span className="text-[10px] uppercase font-bold text-[#8c8074]">100% Solvability</span>
                 <p className="text-xl font-bold text-emerald-400 mt-1">0 Failures</p>
-                <p className="text-[11px] text-[#9c8f82] mt-0.5">All 5 cases uniquely solvable with no guessing.</p>
+                <p className="text-[11px] text-[#9c8f82] mt-0.5">All 10 cases uniquely solvable with no guessing.</p>
               </div>
 
               <div className="p-4 rounded-xl bg-[#1e1814] border border-[#382f28] text-center">

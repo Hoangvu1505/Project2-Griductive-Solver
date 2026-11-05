@@ -1,0 +1,280 @@
+{
+  "size": 4,
+  "name": "The Midnight Express (4x4)",
+  "characters": [
+    {
+      "coord": "A1",
+      "name": "Arthur",
+      "profession": "Conductor",
+      "status": "INNOCENT",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_A1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 1
+          }
+        },
+        "text": "Row 1 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Beatrice",
+      "profession": "Baroness",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B1",
+          "target2": "A2"
+        },
+        "text": "Beatrice and Edward (A2) have the SAME status."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Charles",
+      "profession": "Chef",
+      "status": "INNOCENT",
+      "initially_revealed": true,
+      "clue": {
+        "id": "clue_C1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "B1",
+          "target2": "D1"
+        },
+        "text": "Beatrice (B1) and Diana (D1) have the SAME status."
+      }
+    },
+    {
+      "coord": "D1",
+      "name": "Diana",
+      "profession": "Diplomat",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D1",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "D1",
+          "target2": "D2"
+        },
+        "text": "Diana and Helena (D2) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "A2",
+      "name": "Edward",
+      "profession": "Engineer",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 2
+          }
+        },
+        "text": "Row 2 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B2",
+      "name": "Florence",
+      "profession": "Florist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B2",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "B2",
+          "target2": "B3"
+        },
+        "text": "Florence and Julia (B3) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "George",
+      "profession": "Guard",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "C2",
+          "target2": "C3"
+        },
+        "text": "George and Kenneth (C3) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "D2",
+      "name": "Helena",
+      "profession": "Heiress",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D2",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "C2",
+          "target2": "D2"
+        },
+        "text": "George (C2) and Helena have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "A3",
+      "name": "Ian",
+      "profession": "Inspector",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A3",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A3",
+          "target2": "A4"
+        },
+        "text": "Ian and Michael (A4) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "B3",
+      "name": "Julia",
+      "profession": "Journalist",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B3",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "ROW",
+            "param": 3
+          }
+        },
+        "text": "Row 3 contains exactly 1 criminal."
+      }
+    },
+    {
+      "coord": "C3",
+      "name": "Kenneth",
+      "profession": "Knight",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C3",
+          "target2": "C4"
+        },
+        "text": "Kenneth and Oscar (C4) have the SAME status."
+      }
+    },
+    {
+      "coord": "D3",
+      "name": "Laura",
+      "profession": "Lawyer",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D3",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "D3",
+          "target2": "B4"
+        },
+        "text": "Laura and Nora (B4) have the SAME status."
+      }
+    },
+    {
+      "coord": "A4",
+      "name": "Michael",
+      "profession": "Musician",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "ROW",
+            "param": 4
+          }
+        },
+        "text": "Row 4 contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "B4",
+      "name": "Nora",
+      "profession": "Nurse",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B4",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "D4",
+          "target2": "A1"
+        },
+        "text": "Patricia (D4) and Arthur (A1) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "C4",
+      "name": "Oscar",
+      "profession": "Officer",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "COL",
+            "param": "C"
+          }
+        },
+        "text": "Column C contains exactly 1 criminal."
+      }
+    },
+    {
+      "coord": "D4",
+      "name": "Patricia",
+      "profession": "Professor",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D4",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "D"
+          }
+        },
+        "text": "Column D contains exactly 2 criminals."
+      }
+    }
+  ]
+}

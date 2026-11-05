@@ -1,6 +1,11 @@
 puzzle_file,grid_size,n,status,primary_vars,aux_vars,total_vars,initial_clauses,final_clauses,sat_calls,decisions,propagations,backtracks,deduction_steps,total_runtime_ms,sat_runtime_ms
-puzzle_3x3_1.json,3x3,3,SUCCESS,9,0,9,5,28,16,0,102,0,8,2.66,0.82
-puzzle_3x3_2.json,3x3,3,SUCCESS,9,0,9,8,36,14,0,84,0,7,2.42,0.8
-puzzle_4x4_1.json,4x4,4,SUCCESS,16,0,16,12,76,76,0,746,0,14,13.45,7.73
-puzzle_4x4_2.json,4x4,4,SUCCESS,16,0,16,12,77,42,0,418,0,14,12.82,6.22
-puzzle_5x5_1.json,5x5,5,SUCCESS,25,0,25,19,146,64,1,998,0,23,49.56,25.32
+puzzle_3x3_1.json,3x3,3,SUCCESS,9,0,9,5,28,16,0,102,0,8,2.62,0.73
+puzzle_3x3_2.json,3x3,3,SUCCESS,9,0,9,8,36,14,0,84,0,7,2.48,0.8
+puzzle_3x3_3.json,3x3,3,SUCCESS,9,0,9,5,32,32,3,219,0,8,3.65,1.72
+puzzle_4x4_1.json,4x4,4,SUCCESS,16,0,16,12,76,76,0,746,0,14,13.07,7.46
+puzzle_4x4_2.json,4x4,4,SUCCESS,16,0,16,12,77,42,0,418,0,14,12.93,6.17
+puzzle_4x4_3.json,4x4,4,SUCCESS,16,0,16,12,82,34,1,355,0,14,11.85,4.97
+puzzle_4x4_4.json,4x4,4,SUCCESS,16,0,16,12,77,30,0,318,0,14,10.96,4.41
+puzzle_5x5_1.json,5x5,5,SUCCESS,25,0,25,19,146,64,1,998,0,23,49.55,25.44
+puzzle_5x5_2.json,5x5,5,SUCCESS,25,0,25,19,201,46,6,812,0,23,63.38,27.13
+puzzle_5x5_3.json,5x5,5,SUCCESS,25,0,25,19,177,46,1,772,0,23,50.1,21.71

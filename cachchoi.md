@@ -132,3 +132,4 @@ Khi mở giao diện web (`python main.py`), bạn sẽ có các công cụ tr�
   - Ngược lại, nếu hàng có 4 người, có 2 tội phạm, mà bạn đã tìm ra 2 người Innocent ➔ **2 người còn lại chắc chắn là Criminal**!
 * **Dùng chức năng Highlight**: Luôn nhấp vào các manh mối để xem viền vàng làm sáng các ô liên quan, giúp bạn kết hợp nhiều manh mối cùng một lúc rất nhanh.
 * **Không bao giờ "liều mạng" bấm thử**: Nhớ rằng mỗi lần đoán mò đều bị từ chối `NOT_PROVABLE`. Hãy tập trung tìm mối dây liên kết logic!
+
