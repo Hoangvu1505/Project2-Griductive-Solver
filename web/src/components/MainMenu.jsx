@@ -481,7 +481,7 @@ export default function MainMenu({
                     1
                   </div>
                   <div>
-                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 1</span>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Lương Nguyễn Hoàng Vũ</span>
                     <span className="text-xs text-amber-400 font-medium">Trưởng nhóm</span>
                   </div>
                 </div>
@@ -492,7 +492,7 @@ export default function MainMenu({
                     2
                   </div>
                   <div>
-                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 2</span>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Huỳnh Chí Thoại</span>
                     <span className="text-xs text-[#8c8074]">Thành viên</span>
                   </div>
                 </div>
@@ -503,7 +503,7 @@ export default function MainMenu({
                     3
                   </div>
                   <div>
-                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 3</span>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Trần Minh Tiến</span>
                     <span className="text-xs text-[#8c8074]">Thành viên</span>
                   </div>
                 </div>
@@ -514,7 +514,7 @@ export default function MainMenu({
                     4
                   </div>
                   <div>
-                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 4</span>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Đỗ Trung Kiên</span>
                     <span className="text-xs text-[#8c8074]">Thành viên</span>
                   </div>
                 </div>
@@ -525,7 +525,7 @@ export default function MainMenu({
                     5
                   </div>
                   <div>
-                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 5</span>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Lê Phạm Đăng Khiêm</span>
                     <span className="text-xs text-[#8c8074]">Thành viên</span>
                   </div>
                 </div>
