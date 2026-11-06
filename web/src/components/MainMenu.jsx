@@ -451,9 +451,9 @@ export default function MainMenu({
           </div>
         )}
 
-        {/* --- TAB 3: ABOUT & TEAM DISTRIBUTION --- */}
+        {/* --- TAB 3: ABOUT & TEAM MEMBERS --- */}
         {activeTab === 'about' && (
-          <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
+          <div className="space-y-6 animate-fadeIn max-w-2xl mx-auto">
             <div className="text-center max-w-xl mx-auto mb-6">
               <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#f5efe9]">
                 Project Information & Credits
@@ -463,45 +463,71 @@ export default function MainMenu({
               </p>
             </div>
 
-            <div className="bg-[#1b1613] border border-[#332a23] rounded-xl p-5 space-y-4">
-              <h4 className="font-serif font-bold text-sm text-[#f0ebe5] border-b border-[#312923] pb-2">
-                Team Member Task Allocation
-              </h4>
+            <div className="bg-[#1b1613] border border-[#332a23] rounded-2xl p-6 shadow-xl space-y-5">
+              <div className="flex items-center justify-between border-b border-[#312923] pb-3">
+                <h4 className="font-serif font-bold text-base text-[#f0ebe5] flex items-center gap-2">
+                  <Users className="w-4 h-4 text-amber-400" />
+                  <span>Danh sách thành viên</span>
+                </h4>
+                <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-950/60 text-amber-300 border border-amber-800/50">
+                  5 Thành viên
+                </span>
+              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                <div className="p-3 rounded-lg bg-[#231d18] border border-[#382f28]">
-                  <strong className="text-amber-300 block mb-1">Trưởng nhóm / Thành viên A</strong>
-                  <p className="text-[11px] text-[#a39689]">
-                    Logic Agent, tích hợp hệ thống, kiểm tra entailment KB |= C_i và KB |= ¬C_i, deduction loop, deduction trace, uniqueness check, Hint, CLI & git management.
-                  </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {/* Thành viên 1 */}
+                <div className="p-3.5 rounded-xl bg-[#231d18] border border-[#382f28] flex items-center gap-3.5 hover:border-amber-600/40 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-amber-950/80 border border-amber-500/40 flex items-center justify-center font-bold text-amber-300 text-sm shadow-inner">
+                    1
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 1</span>
+                    <span className="text-xs text-amber-400 font-medium">Trưởng nhóm</span>
+                  </div>
                 </div>
 
-                <div className="p-3 rounded-lg bg-[#231d18] border border-[#382f28]">
-                  <strong className="text-emerald-300 block mb-1">Thành viên B</strong>
-                  <p className="text-[11px] text-[#a39689]">
-                    Bộ giải SAT (DPLL): unit propagation, conflict detection, đệ quy & quay lui, assumptions, thống kê decisions/props, unit test và script benchmark.
-                  </p>
+                {/* Thành viên 2 */}
+                <div className="p-3.5 rounded-xl bg-[#231d18] border border-[#382f28] flex items-center gap-3.5 hover:border-emerald-600/40 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-emerald-950/80 border border-emerald-500/40 flex items-center justify-center font-bold text-emerald-300 text-sm shadow-inner">
+                    2
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 2</span>
+                    <span className="text-xs text-[#8c8074]">Thành viên</span>
+                  </div>
                 </div>
 
-                <div className="p-3 rounded-lg bg-[#231d18] border border-[#382f28]">
-                  <strong className="text-cyan-300 block mb-1">Thành viên C</strong>
-                  <p className="text-[11px] text-[#a39689]">
-                    CNF Encoder: ánh xạ biến xác định, mã hóa 6 dạng clue (FACT, SAME, DIFF, EXACTLY, AT_LEAST, AT_MOST) + 2 extension (PARITY, COMPARE), build_kb(t).
-                  </p>
+                {/* Thành viên 3 */}
+                <div className="p-3.5 rounded-xl bg-[#231d18] border border-[#382f28] flex items-center gap-3.5 hover:border-cyan-600/40 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center font-bold text-cyan-300 text-sm shadow-inner">
+                    3
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 3</span>
+                    <span className="text-xs text-[#8c8074]">Thành viên</span>
+                  </div>
                 </div>
 
-                <div className="p-3 rounded-lg bg-[#231d18] border border-[#382f28]">
-                  <strong className="text-purple-300 block mb-1">Thành viên D</strong>
-                  <p className="text-[11px] text-[#a39689]">
-                    Game Engine, Clue model & Region (row, col, neighbors, corners, between), semantic evaluator, PublicState, bộ puzzle 3x3, 4x4, 5x5 nghiệm duy nhất.
-                  </p>
+                {/* Thành viên 4 */}
+                <div className="p-3.5 rounded-xl bg-[#231d18] border border-[#382f28] flex items-center gap-3.5 hover:border-purple-600/40 transition-colors">
+                  <div className="w-10 h-10 rounded-full bg-purple-950/80 border border-purple-500/40 flex items-center justify-center font-bold text-purple-300 text-sm shadow-inner">
+                    4
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 4</span>
+                    <span className="text-xs text-[#8c8074]">Thành viên</span>
+                  </div>
                 </div>
 
-                <div className="p-3 rounded-lg bg-[#231d18] border border-[#382f28] md:col-span-2">
-                  <strong className="text-rose-300 block mb-1">Thành viên E</strong>
-                  <p className="text-[11px] text-[#a39689]">
-                    Modern GUI (React + Tailwind v4 + SVG procedural avatars), Main Menu, highlight clue ô liên quan, các nút Load / Restart / Hint / Auto Solve, kịch bản quay video demo 5-10 phút.
-                  </p>
+                {/* Thành viên 5 */}
+                <div className="p-3.5 rounded-xl bg-[#231d18] border border-[#382f28] flex items-center gap-3.5 hover:border-rose-600/40 transition-colors sm:col-span-2 sm:max-w-xs sm:mx-auto sm:w-full">
+                  <div className="w-10 h-10 rounded-full bg-rose-950/80 border border-rose-500/40 flex items-center justify-center font-bold text-rose-300 text-sm shadow-inner">
+                    5
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[#f5efe9] text-sm block">Thành viên 5</span>
+                    <span className="text-xs text-[#8c8074]">Thành viên</span>
+                  </div>
                 </div>
               </div>
             </div>
