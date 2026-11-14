@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import TopNav from './components/TopNav';
 import Sidebar from './components/Sidebar';
 import Card from './components/Card';
@@ -17,7 +17,6 @@ export default function App() {
   // Card interaction & highlights
   const [selectedCardForAction, setSelectedCardForAction] = useState(null);
   const [selectedClueOwner, setSelectedClueOwner] = useState(null);
-  const [highlightedRefCells, setHighlightedRefCells] = useState(new Set());
   const [highlightedHintCell, setHighlightedHintCell] = useState(null);
   const [pencilNotes, setPencilNotes] = useState({});
 
@@ -25,6 +24,7 @@ export default function App() {
   const [traceHistory, setTraceHistory] = useState([]);
   const [isTraceOpen, setIsTraceOpen] = useState(false);
   const [toast, setToast] = useState(null);
+  const dismissToast = useCallback(() => setToast(null), []);
 
   // Timer
   const [timerSeconds, setTimerSeconds] = useState(10);
@@ -68,7 +68,6 @@ export default function App() {
         setGameState(data);
         setCurrentPuzzle(filename);
         setTraceHistory([]);
-        setHighlightedRefCells(new Set());
         setSelectedClueOwner(null);
         setHighlightedHintCell(null);
         setPencilNotes({});
@@ -83,47 +82,6 @@ export default function App() {
       });
   };
 
-  // Helper: Extract referenced cells from clue object
-  const getReferencedCellsFromClue = (clue, n) => {
-    if (!clue || !clue.params) return [];
-    const ctype = (clue.clue_type || '').toUpperCase();
-    const cells = new Set();
-
-    if (ctype === 'FACT') {
-      const t = clue.params.target || clue.params.cell;
-      if (t) cells.add(t.toUpperCase());
-    } else if (ctype === 'SAME' || ctype === 'DIFFERENT') {
-      const t1 = clue.params.target1 || clue.params.cell1;
-      const t2 = clue.params.target2 || clue.params.cell2;
-      if (t1) cells.add(t1.toUpperCase());
-      if (t2) cells.add(t2.toUpperCase());
-    } else if (ctype === 'EXACTLY' || ctype === 'AT_LEAST' || ctype === 'AT_MOST' || ctype === 'PARITY') {
-      const reg = clue.params.region;
-      if (reg) {
-        const rtype = (reg.region_type || '').toUpperCase();
-        if (rtype === 'ROW') {
-          const r = parseInt(reg.param, 10);
-          for (let c = 0; c < n; c++) {
-            cells.add(`${String.fromCharCode(65 + c)}${r}`);
-          }
-        } else if (rtype === 'COL' || rtype === 'COLUMN') {
-          const colLetter = String(reg.param).toUpperCase();
-          for (let r = 1; r <= n; r++) {
-            cells.add(`${colLetter}${r}`);
-          }
-        } else if (rtype === 'CORNERS') {
-          cells.add(`A1`);
-          cells.add(`${String.fromCharCode(65 + n - 1)}1`);
-          cells.add(`A${n}`);
-          cells.add(`${String.fromCharCode(65 + n - 1)}${n}`);
-        } else if (rtype === 'EXPLICIT' && Array.isArray(reg.param)) {
-          reg.param.forEach((c) => cells.add(String(c).toUpperCase()));
-        }
-      }
-    }
-    return Array.from(cells);
-  };
-
   // Handle Card Click
   const handleCardClick = (coord) => {
     if (!gameState || !gameState.cards) return;
@@ -132,14 +90,7 @@ export default function App() {
 
     if (card.is_revealed) {
       // Clue highlight toggle
-      if (selectedClueOwner === coord) {
-        setSelectedClueOwner(null);
-        setHighlightedRefCells(new Set());
-      } else {
-        setSelectedClueOwner(coord);
-        const refCells = getReferencedCellsFromClue(card.clue, gameState.size);
-        setHighlightedRefCells(new Set(refCells));
-      }
+      setSelectedClueOwner((owner) => owner === coord ? null : coord);
     } else {
       // Open verdict submission modal
       setSelectedCardForAction(card);
@@ -187,9 +138,19 @@ export default function App() {
       .then((res) => res.json())
       .then((data) => {
         if (data.hint) {
-          const { cell, name, forced_status, relevant_clue_ids, message } = data.hint;
+          const { cell, name, forced_status, relevant_clue_ids } = data.hint;
+          const relatedCard = Object.values(gameState.cards).find(
+            ({ clue }) => clue && relevant_clue_ids.includes(clue.id)
+          );
           setHighlightedHintCell(cell);
-          setToast({ type: 'HINT', message: `HINT: ${name} [${cell}] can be logically proved as ${forced_status}!` });
+          const verdictMessage = `HINT: ${name} [${cell}] can be logically proved as ${forced_status}!`;
+          setToast({
+            type: 'HINT',
+            message: relatedCard
+              ? `${verdictMessage} Related clue [${relatedCard.coord}] — ${relatedCard.clue.text}`
+              : verdictMessage,
+            duration: 8000
+          });
         } else {
           setToast({ type: 'NOT_PROVABLE', message: 'HINT: No character is currently forced from public clues.' });
         }
@@ -252,7 +213,6 @@ export default function App() {
       .then((data) => {
         setGameState(data);
         setTraceHistory([]);
-        setHighlightedRefCells(new Set());
         setSelectedClueOwner(null);
         setHighlightedHintCell(null);
         setPencilNotes({});
@@ -283,8 +243,11 @@ export default function App() {
 
   if (loading || !gameState) {
     return (
-      <div className="min-h-screen bg-[#151210] flex items-center justify-center text-[#d6cec6] font-serif text-lg">
-        Loading Griductive...
+      <div className="min-h-screen bg-[#F2F0FB] flex items-center justify-center text-slate-500 font-sans text-lg">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-4 border-violet-200 border-t-violet-500 rounded-full animate-spin" />
+          <span>Loading Griductive...</span>
+        </div>
       </div>
     );
   }
@@ -307,6 +270,7 @@ export default function App() {
 
   // --- 2. RENDER ACTIVE GAME INVESTIGATION VIEW ---
   const { size = 3, cells = [], cards = {} } = gameState;
+  const highlightedRefCells = new Set(cards[selectedClueOwner]?.clue?.referenced_cells);
 
   // Grid styling based on dimensions (3x3, 4x4, 5x5)
   const gridColsClass =
@@ -315,7 +279,14 @@ export default function App() {
     'grid-cols-5 max-w-[800px]';
 
   return (
-    <div className="min-h-screen bg-[#151210] flex flex-col font-sans text-[#d6cec6]">
+    <div className="min-h-screen bg-[#F2F0FB] flex flex-col font-sans text-slate-700 relative">
+      {/* Animated Aura Mesh Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-pink-200/40 blur-[120px] animate-pulse" style={{animationDuration: '8s'}} />
+        <div className="absolute top-[30%] right-[-5%] w-[500px] h-[500px] rounded-full bg-violet-200/30 blur-[120px] animate-pulse" style={{animationDuration: '12s', animationDelay: '2s'}} />
+        <div className="absolute bottom-[-10%] left-[20%] w-[550px] h-[550px] rounded-full bg-cyan-200/30 blur-[120px] animate-pulse" style={{animationDuration: '10s', animationDelay: '4s'}} />
+      </div>
+
       {/* Top Header Bar */}
       <TopNav
         puzzles={puzzles}
@@ -381,7 +352,7 @@ export default function App() {
       />
 
       {/* Toast Feedback Banner */}
-      <Toast toast={toast} onClose={() => setToast(null)} />
+      <Toast toast={toast} onClose={dismissToast} />
     </div>
   );
 }

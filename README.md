@@ -16,7 +16,7 @@ Dự án này triển khai toàn diện:
 2. **Bộ giải SAT DPLL**: thuật toán Davis-Putnam-Logemann-Loveland hoàn chỉnh với lan truyền đơn vị (unit propagation), phát hiện xung đột (conflict detection), chọn biến xác định, đệ quy & quay lui, ghi nhận thống kê.
 3. **Logic Agent suy diễn tự động**: phân loại `CRIMINAL`, `INNOCENT`, `UNKNOWN`, `INCONSISTENT`, nhật ký suy diễn `DeductionTrace`, kiểm tra nghiệm duy nhất (`Uniqueness Check`) và tính năng gợi ý `Hint`.
 4. **Game Engine**: quản lý trạng thái bí mật, độc lập hoàn toàn với Logic Agent, kiểm duyệt phán quyết (`ACCEPTED`, `NOT_PROVABLE`, `CONTRADICTED`).
-5. **Giao diện đồ họa (GUI)**: ứng dụng desktop trực quan, hỗ trợ chơi thủ công, highlight ô liên quan khi chọn clue, gợi ý và tự động giải.
+5. **Giao diện đồ họa (GUI)** là ứng dụng web React kết nối với Python API server, có giao diện theme sáng, hỗ trợ chơi thủ công, highlight ô liên quan khi chọn clue, gợi ý và tự động giải.
 
 ---
 
@@ -30,7 +30,7 @@ Cấu trúc file tuân thủ chính xác 100% theo bảng phân công công vi�
 | **Thành viên B** | Bộ giải SAT (DPLL) & Thực nghiệm | Cài đặt DPLL gồm unit propagation, conflict detection, chọn biến xác định, đệ quy và backtracking, hỗ trợ assumptions, thống kê decisions / propagations / backtracks / runtime. Viết unit test (kể cả ví dụ trang 4). Viết script benchmark trên puzzle 3x3, 4x4, 5x5, xuất CSV và biểu đồ. | `sat/dpll.py`<br>`tests/test_dpll.py`<br>`experiments/run_benchmarks.py` |
 | **Thành viên C** | CNF Encoder | Ánh xạ biến $C_i$ xác định, validate clue, mã hoá 6 clue sang CNF bằng direct combinatorial encoding, cài 2 extension (PARITY, COMPARE, CORNERS), thêm unit clause cho verdict đã biết, hàm `build_kb(t)`, thống kê biến và clause. Test encoder so với evaluator bằng brute force $2^n$ assignment. | `logic/var_map.py`<br>`logic/encoder.py`<br>`logic/kb.py`<br>`tests/test_encoder.py` |
 | **Thành viên D** | Game Engine, Clue model & Bộ puzzle | Dataclass `Clue` và `Region` (row, col, neighbors, explicit, corners), parser JSON, semantic evaluator cho 6 clue và extension, GameEngine (`submit_verdict` trả ACCEPTED / NOT_PROVABLE / CONTRADICTED, reveal), PublicState. Tạo bộ puzzle 3x3, 4x4, 5x5 và kiểm tra nghiệm duy nhất. | `engine/clue.py`<br>`engine/region.py`<br>`engine/evaluator.py`<br>`engine/game_engine.py`<br>`puzzles/*.json` |
-| **Thành viên E** | GUI & Video demo | Dựng Modern GUI hiển thị lưới, toạ độ, tên và nghề, thẻ úp/lật chuẩn đồ họa gốc (Dark theme, procedural SVG avatars). Cho phép gọi CRIMINAL / INNOCENT, hiển thị NOT_PROVABLE / CONTRADICTED, chọn clue và highlight ô liên quan, các nút Load / Restart / Hint / Auto Solve, nối GUI với Engine và Agent qua Python API server. Kịch bản quay video demo 5-10 phút. | `web/` (React Modern GUI)<br>`gui/app.py`<br>`gui/web_server.py`<br>`demo_script.md` |
+| **Thành viên E** | GUI & Video demo | Dựng Modern GUI hiển thị lưới, toạ độ, tên và nghề, thẻ úp/lật, giao diện theme sáng với nền tím pastel, thẻ trắng và hiệu ứng kính mờ (procedural SVG avatars). Cho phép gọi CRIMINAL / INNOCENT, hiển thị NOT_PROVABLE / CONTRADICTED, chọn clue và highlight ô liên quan, các chức năng chọn màn (Load) / Restart / Hint / Auto Solve, nối GUI với Engine và Agent qua Python API server. Kịch bản quay video demo 5-10 phút. | `web/` (React Modern GUI)<br>`gui/app.py`<br>`gui/web_server.py`<br>`demo_script.md` |
 
 ---
 
@@ -61,10 +61,11 @@ Hoặc:
 ```bash
 python gui/app.py
 ```
-Ứng dụng web hiển thị tại: `http://localhost:8000` với đồ họa chuẩn theo phiên bản gốc `knotwise.games/games/griductive`:
-* Tông màu Dark Espresso thanh lịch, thẻ bo tròn sang trọng.
+Mở `http://localhost:8000` để sử dụng giao diện web theme sáng.
+
+* Nền tím pastel, thẻ trắng bo tròn và hiệu ứng kính mờ.
 * 100% vector SVG procedural avatar với kiểu tóc (ngắn, dài, búi, xoăn, spiky, bob), màu tóc, màu da, áo và biểu cảm phong phú.
-* Hoạt ảnh lật thẻ mượt mà, hiệu ứng spotlight hint và thanh công cụ tiện ích đầy đủ.
+* Thẻ đổi màu và hiển thị manh mối sau phán quyết được chấp nhận, kèm hiệu ứng spotlight hint và các công cụ chơi.
 
 *Nếu muốn phát triển / chạy hot-reload React dev server:*
 ```bash
@@ -73,16 +74,19 @@ npm run dev
 ```
 
 **Các thao tác trên GUI:**
-* **Chơi thủ công:** Nhấp vào `+ Criminal` hoặc `- Innocent` trên các thẻ chưa lật. Hệ thống sẽ kiểm tra logic:
+
+* **Chơi thủ công** bằng cách nhấp vào một thẻ chưa lật, rồi chọn `Call CRIMINAL` hoặc `Call INNOCENT` trong hộp thoại. Hệ thống kiểm tra logic để phản hồi phán quyết.
   * Nếu phán quyết được chứng minh: chấp nhận (`ACCEPTED`), lật thẻ hiển thị nhãn và manh mối mới.
   * Nếu đoán mò (chưa chứng minh được): cảnh báo `REJECTED [NOT_PROVABLE]` màu vàng-cam.
   * Nếu đoán ngược với suy luận: cảnh báo `REJECTED [CONTRADICTED]` màu đỏ.
 * **Highlight manh mối:** Nhấp chuột vào bất kỳ manh mối nào trên thẻ đã mở. Các ô trên bàn cờ được manh mối này tham chiếu tới sẽ được viền vàng nổi bật.
-* **Gợi ý (Hint):** Nhấn nút `Hint` để tìm ra ô tiếp theo bị ép buộc logic kèm manh mối gợi ý (không làm lộ đáp án ẩn).
-* **Tự động giải:** 
-  * `Auto Solve (Step)`: thực hiện đúng 1 bước suy luận tiếp theo.
-  * `Auto Solve (All)`: tự động chạy vòng lặp suy diễn từng bước cho đến khi giải xong toàn bộ bàn cờ.
-* **Kiểm tra nghiệm duy nhất:** Nhấn nút `Check Uniqueness` để xác minh câu đố chỉ có đúng 1 nghiệm.
+* **Gợi ý (Hint)** chỉ ra ô tiếp theo có thể chứng minh, đánh dấu ô đó bằng màu cyan và hiển thị một manh mối công khai liên quan nếu có.
+* **Chọn màn (Load)** bằng cách chọn câu đố trong menu hoặc trên thanh điều hướng.
+* **Khởi động lại** bằng nút `Restart Puzzle` để trở về các thẻ được lật ban đầu.
+* **Tự động giải** có hai chế độ.
+  * `Auto Step (Logic Agent)` thực hiện đúng một bước suy luận tiếp theo.
+  * `Auto Solve (All)` tự động suy luận từng bước cho đến khi giải xong hoặc không còn phán quyết có thể chứng minh. Nhấn `Pause Auto Solve` để dừng chạy tự động.
+* **Kiểm tra nghiệm duy nhất** bằng nút `Unique`, dùng toàn bộ manh mối để kiểm tra câu đố có đúng một nghiệm.
 
 ---
 

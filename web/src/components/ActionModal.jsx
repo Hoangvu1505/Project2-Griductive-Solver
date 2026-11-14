@@ -14,15 +14,15 @@ export default function ActionModal({
   const { coord, name, profession } = cardData;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 bg-black/30 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-150">
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-[#241f1b] border border-[#3d342d] rounded-2xl w-full max-w-sm p-5 shadow-2xl text-[#f2ece6] flex flex-col items-center relative"
+        className="bg-white/90 backdrop-blur-2xl border border-slate-200/60 rounded-3xl w-full max-w-sm p-5 shadow-2xl text-slate-800 flex flex-col items-center relative"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 p-1 rounded-lg text-[#8a7f74] hover:text-[#f2ece6] hover:bg-[#332b24] transition-colors"
+          className="absolute top-3 right-3 p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -31,11 +31,11 @@ export default function ActionModal({
         <div className="mb-2">
           <Avatar name={name} coord={coord} size={68} />
         </div>
-        <div className="text-xs font-mono font-bold text-[#8a7f74] mb-0.5">
+        <div className="text-xs font-mono font-bold text-slate-400 mb-0.5">
           [{coord}]
         </div>
-        <h3 className="font-bold text-lg text-[#f2ece6]">{name}</h3>
-        <p className="text-xs text-[#9c8f82] mb-5">{profession}</p>
+        <h3 className="font-bold text-lg text-slate-800">{name}</h3>
+        <p className="text-xs text-slate-500 mb-5">{profession}</p>
 
         {/* Primary Verdict Call Buttons */}
         <div className="w-full space-y-2 mb-4">
@@ -44,7 +44,7 @@ export default function ActionModal({
               onSubmitVerdict(coord, 'CRIMINAL');
               onClose();
             }}
-            className="w-full flex items-center justify-center gap-2 bg-[#8c1d28] hover:bg-[#a62532] text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition-all shadow-md active:scale-[0.98]"
+            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-400 hover:to-pink-400 text-white font-semibold py-2.5 px-4 rounded-2xl text-sm transition-all shadow-lg shadow-rose-200/50 active:scale-[0.98] cursor-pointer"
           >
             <ShieldAlert className="w-4 h-4" />
             <span>Call CRIMINAL</span>
@@ -55,7 +55,7 @@ export default function ActionModal({
               onSubmitVerdict(coord, 'INNOCENT');
               onClose();
             }}
-            className="w-full flex items-center justify-center gap-2 bg-[#20633f] hover:bg-[#287d4f] text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition-all shadow-md active:scale-[0.98]"
+            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-semibold py-2.5 px-4 rounded-2xl text-sm transition-all shadow-lg shadow-emerald-200/50 active:scale-[0.98] cursor-pointer"
           >
             <CheckCircle2 className="w-4 h-4" />
             <span>Call INNOCENT</span>
@@ -63,7 +63,7 @@ export default function ActionModal({
         </div>
 
         {/* Pencil Notes Section */}
-        <div className="w-full border-t border-[#383029] pt-3 flex items-center justify-between text-xs text-[#8a7f74]">
+        <div className="w-full border-t border-slate-200 pt-3 flex items-center justify-between text-xs text-slate-400">
           <span className="flex items-center gap-1">
             <Edit3 className="w-3.5 h-3.5" />
             Pencil Note:
@@ -74,7 +74,7 @@ export default function ActionModal({
                 onSetPencil(coord, 'CRIMINAL');
                 onClose();
               }}
-              className="px-2 py-1 rounded bg-[#332a24] hover:bg-[#42372f] text-red-400 font-medium text-[11px]"
+              className="px-2 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-500 font-medium text-[11px] transition-colors"
             >
               Crim
             </button>
@@ -83,7 +83,7 @@ export default function ActionModal({
                 onSetPencil(coord, 'INNOCENT');
                 onClose();
               }}
-              className="px-2 py-1 rounded bg-[#332a24] hover:bg-[#42372f] text-emerald-400 font-medium text-[11px]"
+              className="px-2 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-500 font-medium text-[11px] transition-colors"
             >
               Inno
             </button>
@@ -92,7 +92,7 @@ export default function ActionModal({
                 onSetPencil(coord, null);
                 onClose();
               }}
-              className="px-2 py-1 rounded bg-[#332a24] hover:bg-[#42372f] text-[#8a7f74] text-[11px]"
+              className="px-2 py-1 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-400 text-[11px] transition-colors"
             >
               Clear
             </button>
@@ -102,4 +102,3 @@ export default function ActionModal({
     </div>
   );
 }
-

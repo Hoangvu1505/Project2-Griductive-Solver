@@ -1,184 +1,417 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* ============================================
+   Griductive — "Frosted Glass & Aura Mesh"
+   Design System  ·  App.css (components & utils)
+   ============================================ */
 
-  &:hover {
-    border-color: var(--accent-border);
+/* ─────────────────────────────────────────────
+   1.  KEYFRAME ANIMATIONS
+   ───────────────────────────────────────────── */
+
+/* Animated mesh-gradient aura background */
+@keyframes aura-float {
+  0% {
+    transform: rotate(0deg) scale(1);
   }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+  33% {
+    transform: rotate(120deg) scale(1.05);
   }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
+  66% {
+    transform: rotate(240deg) scale(0.95);
   }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
+  100% {
+    transform: rotate(360deg) scale(1);
   }
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
+/* 3-D card flip on the Y axis */
+@keyframes card-flip {
+  0% {
+    transform: perspective(800px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(800px) rotateY(180deg);
   }
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
+/* Subtle hover float */
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
   }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
+  100% {
+    transform: translateY(-5px);
   }
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
+/* Pulsing glow ring (generic – colour set via custom property) */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--glow-color, rgba(245, 158, 11, 0.45));
+  }
+  50% {
+    box-shadow: 0 0 18px 6px var(--glow-color, rgba(245, 158, 11, 0.25));
   }
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
+/* Confetti particles falling */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
   }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
+  80% {
+    opacity: 1;
   }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
   }
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
+/* Toast / panel slide-up entry */
+@keyframes slide-up {
+  0% {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+/* Simple fade-in */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
   }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+  100% {
+    opacity: 1;
   }
 }
+
+/* Shimmer sweep across a card */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   2.  AURA MESH BACKGROUND
+   ───────────────────────────────────────────── */
+
+.aura-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aura-bg::before,
+.aura-bg::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: aura-float 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Pink blob – top-right */
+.aura-bg::before {
+  width: 55vw;
+  height: 55vw;
+  top: -15%;
+  right: -10%;
+  background: radial-gradient(circle, var(--aura-pink) 0%, transparent 70%);
+  animation-duration: 20s;
+}
+
+/* Lavender blob – bottom-left */
+.aura-bg::after {
+  width: 50vw;
+  height: 50vw;
+  bottom: -10%;
+  left: -8%;
+  background: radial-gradient(circle, var(--aura-lavender) 0%, transparent 70%);
+  animation-duration: 24s;
+  animation-direction: reverse;
+}
+
+/* Third blob via a child span or extra div (mint – centre) */
+.aura-bg .aura-blob-mint {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  top: 35%;
+  left: 30%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--aura-mint) 0%, transparent 70%);
+  filter: blur(80px);
+  animation: aura-float 22s ease-in-out infinite alternate;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────
+   3.  FROSTED GLASS CARD
+   ───────────────────────────────────────────── */
+
+.card-glass {
+  background: var(--color-card-surface);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-glass);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* ─────────────────────────────────────────────
+   4.  CARD HOVER (spring-lift)
+   ───────────────────────────────────────────── */
+
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08),
+              0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* ─────────────────────────────────────────────
+   5.  GLOW UTILITIES
+   ───────────────────────────────────────────── */
+
+/* Amber glow – clues / highlights */
+.glow-amber {
+  --glow-color: rgba(245, 158, 11, 0.45);
+  animation: pulse-glow 2s ease-in-out infinite;
+  border-color: var(--color-highlight) !important;
+}
+
+/* Cyan glow – hints */
+.glow-cyan {
+  --glow-color: rgba(6, 182, 212, 0.4);
+  animation: pulse-glow 2s ease-in-out infinite;
+  border-color: var(--color-hint) !important;
+}
+
+/* Criminal (rose) glow */
+.glow-criminal {
+  --glow-color: rgba(244, 63, 94, 0.4);
+  animation: pulse-glow 2s ease-in-out infinite;
+  border-color: var(--color-criminal) !important;
+}
+
+/* Innocent (emerald) glow */
+.glow-innocent {
+  --glow-color: rgba(16, 185, 129, 0.35);
+  animation: pulse-glow 2s ease-in-out infinite;
+  border-color: var(--color-innocent) !important;
+}
+
+/* ─────────────────────────────────────────────
+   6.  BUTTONS
+   ───────────────────────────────────────────── */
+
+/* Primary – rose → violet gradient */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #F43F5E 0%, #8B5CF6 100%);
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              filter 0.25s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(244, 63, 94, 0.35);
+  filter: brightness(1.05);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(244, 63, 94, 0.25);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  filter: grayscale(0.3);
+}
+
+/* Secondary – soft glass */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  background: var(--color-card-surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              background 0.25s ease,
+              border-color 0.25s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--color-border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.btn-secondary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─────────────────────────────────────────────
+   7.  CONFETTI PARTICLE
+   ───────────────────────────────────────────── */
+
+.confetti-particle {
+  position: fixed;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confetti-fall 3s ease-in forwards;
+  will-change: transform, opacity;
+}
+
+/* ─────────────────────────────────────────────
+   8.  ANIMATION UTILITY HELPERS
+   ───────────────────────────────────────────── */
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.45s ease-out both;
+}
+
+.animate-card-flip {
+  animation: card-flip 0.6s ease-in-out forwards;
+  transform-style: preserve-3d;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────
+   9.  TYPOGRAPHY HELPERS
+   ───────────────────────────────────────────── */
+
+.text-primary   { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted     { color: var(--color-text-muted); }
+.text-criminal  { color: var(--color-criminal); }
+.text-innocent  { color: var(--color-innocent); }
+.text-highlight { color: var(--color-highlight); }
+.text-hint      { color: var(--color-hint); }
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* ─────────────────────────────────────────────
+   10. MISC UTILITIES
+   ───────────────────────────────────────────── */
+
+/* Divider with glass look */
+.divider-glass {
+  height: 1px;
+  border: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-card-border) 30%,
+    var(--color-card-border) 70%,
+    transparent
+  );
+}
+
+/* Badge / chip base */
+.badge-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background: var(--color-card-surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-card-border);
+}
+
+/* Tooltip-style soft shadow */
+.shadow-tooltip {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1),
+              0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Stagger children animations */
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.40s; }
+.stagger-children > *:nth-child(9) { animation-delay: 0.45s; }
+.stagger-children > *:nth-child(10) { animation-delay: 0.50s; }
