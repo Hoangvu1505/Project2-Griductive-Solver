@@ -56,15 +56,23 @@ class GriductiveServerState:
             self.engine.n
         )
         cards_payload = {}
+        name_to_coord = self.engine.var_map.get_name_to_coord_map()
         for coord, c_info in public["cards"].items():
             clue_obj = c_info["clue"]
+            clue_payload = None
+            if clue_obj is not None:
+                clue_payload = clue_obj.to_dict()
+                clue_payload["text"] = clue_obj.get_display_text(self.engine.n)
+                clue_payload["referenced_cells"] = clue_obj.get_referenced_cells(
+                    self.engine.n, name_to_coord
+                )
             cards_payload[coord] = {
                 "coord": c_info["coord"],
                 "name": c_info["name"],
                 "profession": c_info["profession"],
                 "is_revealed": c_info["is_revealed"],
                 "status": c_info["status"],
-                "clue": clue_obj.to_dict() if clue_obj else None
+                "clue": clue_payload
             }
 
         return {
@@ -93,12 +101,18 @@ class GriductiveRequestHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIST_DIR, **kwargs)
 
+    def end_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
+        super().end_headers()
+
     def _send_json(self, data: Any, status: int = 200):
         body = json.dumps(data, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.end_headers()
@@ -106,7 +120,6 @@ class GriductiveRequestHandler(SimpleHTTPRequestHandler):
 
     def do_OPTIONS(self):
         self.send_response(200)
-        self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.end_headers()
