@@ -77,12 +77,15 @@
       "initially_revealed": false,
       "clue": {
         "id": "clue_B2",
-        "clue_type": "SAME",
+        "clue_type": "EXACTLY",
         "params": {
-          "target1": "B2",
-          "target2": "C3"
+          "k": 4,
+          "region": {
+            "region_type": "NEIGHBORS",
+            "param": "B2"
+          }
         },
-        "text": "Ethan and Isaac (C3) have the SAME status."
+        "text": "Ethan has exactly 4 criminal neighbors (including diagonals)."
       }
     },
     {

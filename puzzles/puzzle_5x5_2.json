@@ -322,12 +322,15 @@
       "initially_revealed": false,
       "clue": {
         "id": "clue_D4",
-        "clue_type": "DIFFERENT",
+        "clue_type": "EXACTLY",
         "params": {
-          "target1": "D4",
-          "target2": "D5"
+          "k": 3,
+          "region": {
+            "region_type": "NEIGHBORS",
+            "param": "D4"
+          }
         },
-        "text": "Samuel and Xavier (D5) have DIFFERENT statuses."
+        "text": "Samuel has exactly 3 criminal neighbors (including diagonals)."
       }
     },
     {

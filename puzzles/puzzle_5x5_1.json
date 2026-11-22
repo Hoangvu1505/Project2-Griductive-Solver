@@ -128,12 +128,15 @@
       "initially_revealed": false,
       "clue": {
         "id": "clue_C2",
-        "clue_type": "SAME",
+        "clue_type": "AT_MOST",
         "params": {
-          "target1": "C2",
-          "target2": "A2"
+          "k": 3,
+          "region": {
+            "region_type": "COL",
+            "param": "C"
+          }
         },
-        "text": "Hazel and Fiona have the SAME status."
+        "text": "Column C contains at most 3 criminals."
       }
     },
     {
