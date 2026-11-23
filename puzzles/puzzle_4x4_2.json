@@ -163,12 +163,15 @@
       "initially_revealed": false,
       "clue": {
         "id": "clue_B3",
-        "clue_type": "SAME",
+        "clue_type": "EXACTLY",
         "params": {
-          "target1": "B3",
-          "target2": "C3"
+          "k": 4,
+          "region": {
+            "region_type": "NEIGHBORS",
+            "param": "B3"
+          }
         },
-        "text": "Jack and Karl have the SAME status."
+        "text": "Jack has exactly 4 criminal neighbors (including diagonals)."
       }
     },
     {

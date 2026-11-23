@@ -179,12 +179,15 @@
       "initially_revealed": false,
       "clue": {
         "id": "clue_C3",
-        "clue_type": "DIFFERENT",
+        "clue_type": "AT_MOST",
         "params": {
-          "target1": "C3",
-          "target2": "C4"
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "C"
+          }
         },
-        "text": "Klaus and Oliver (C4) have DIFFERENT statuses."
+        "text": "Column C contains at most 2 criminals."
       }
     },
     {

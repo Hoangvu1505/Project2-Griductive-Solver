@@ -47,11 +47,30 @@ def get_all_cells(n: int) -> List[str]:
     return cells
 
 
+# Region types whose param is a list of coordinates (or "A1,C3" when written as a shortcut string)
+COORD_LIST_TYPES = ('EXPLICIT', 'BETWEEN', 'COMMON_NEIGHBORS')
+
+
+def _split_coords(param: Any) -> List[str]:
+    """Turns 'A1,C3' / 'A1;C3' / ['A1', 'C3'] into ['A1', 'C3']."""
+    if isinstance(param, str):
+        return [p.strip() for p in param.replace(";", ",").split(",") if p.strip()]
+    return list(param)
+
+
+def _require_in_grid(coord: str, n: int) -> None:
+    """Raises ValueError if the coordinate is not a cell of the n x n grid."""
+    r, c = coord_to_rc(coord)
+    if not (0 <= r < n and 0 <= c < n):
+        raise ValueError(f"Cell {coord} out of bounds for {n}x{n} grid")
+
+
 def get_neighbors(coord: str, n: int) -> List[str]:
     """
     Returns 8-neighbors of a cell (horizontal, vertical, diagonal).
     Excludes the cell itself. Boundaries are respected.
     """
+    _require_in_grid(coord, n)
     r, c = coord_to_rc(coord)
     neighbors = []
     for dr in (-1, 0, 1):
@@ -81,6 +100,12 @@ class Region:
     """
     region_type: str
     param: Any = None
+
+    def __post_init__(self):
+        self.region_type = str(self.region_type).upper()
+        # "between:A1,C3" / "explicit:A1,B2" arrive with a plain string param
+        if self.region_type in COORD_LIST_TYPES and isinstance(self.param, str):
+            self.param = _split_coords(self.param)
 
     def resolve(self, n: int, name_to_coord: Optional[Dict[str, str]] = None) -> List[str]:
         """
@@ -115,6 +140,7 @@ class Region:
                 c = str(item)
                 if name_to_coord and c in name_to_coord:
                     c = name_to_coord[c]
+                _require_in_grid(c, n)
                 cells.append(c.upper())
             return sorted(list(set(cells)))
 
@@ -136,6 +162,8 @@ class Region:
             return sorted(list(boundary_set))
 
         elif rtype == 'COMMON_NEIGHBORS':
+            if len(self.param) != 2:
+                raise ValueError(f"COMMON_NEIGHBORS needs exactly 2 cells, got {self.param}")
             c1, c2 = self.param
             if name_to_coord:
                 c1 = name_to_coord.get(c1, c1)
@@ -145,10 +173,14 @@ class Region:
             return sorted(list(n1.intersection(n2)))
 
         elif rtype == 'BETWEEN':
+            if len(self.param) != 2:
+                raise ValueError(f"BETWEEN needs exactly 2 cells, got {self.param}")
             c1, c2 = self.param
             if name_to_coord:
                 c1 = name_to_coord.get(c1, c1)
                 c2 = name_to_coord.get(c2, c2)
+            _require_in_grid(c1, n)
+            _require_in_grid(c2, n)
             r1, col1 = coord_to_rc(c1)
             r2, col2 = coord_to_rc(c2)
             dr = r2 - r1
@@ -179,7 +211,8 @@ class Region:
         if isinstance(data, dict):
             return cls(region_type=data["region_type"], param=data.get("param"))
         elif isinstance(data, str):
-            # Shortcut parser: "row:2", "col:B", "neighbors:A1", "corners"
+            # Shortcut parser: "row:2", "col:B", "neighbors:A1", "corners",
+            # "explicit:A1,B2", "between:A1,C3", "common_neighbors:A1,C3"
             parts = data.split(":", 1)
             rtype = parts[0].upper()
             param = parts[1] if len(parts) > 1 else None
@@ -187,4 +220,3 @@ class Region:
         elif isinstance(data, list):
             return cls(region_type="EXPLICIT", param=data)
         raise ValueError(f"Cannot construct Region from {data}")
-
