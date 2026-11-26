@@ -5,55 +5,128 @@
 
 ## 1. Giới Thiệu Đồ Án (Introduction)
 
-**Griductive** là trò chơi suy luận lưới (grid-deduction game) trong đó mỗi nhân vật là **Criminal** (Tội phạm) hoặc **Innocent** (Vô tội). Các manh mối được lật mở luôn đúng sự thật, và người chơi phải xác định trạng thái của từng nhân vật **từng bước một bằng chứng minh logic**. 
+**Griductive** là trò chơi suy luận dạng lưới (grid-deduction game) trong đó mỗi nhân vật bí mật mang một trong hai trạng thái: **Criminal** (Tội phạm) hoặc **Innocent** (Vô tội). Các manh mối khi được lật mở luôn đúng sự thật, và người chơi cần xác định danh tính từng nhân vật **từng bước một bằng chứng minh logic hình thức**.
 
-Quy tắc cốt lõi: **TUYỆT ĐỐI KHÔNG ĐOÁN MÒ (NO GUESSING)**. Một phán quyết chỉ được hệ thống chấp nhận khi và chỉ khi nó được suy diễn kéo theo logic ($KB_t \models C_i$ hoặc $KB_t \models \neg C_i$) từ các thông tin công khai hiện tại.
+Quy tắc cốt lõi của trò chơi: **TUYỆT ĐỐI KHÔNG ĐOÁN MÒ (NO GUESSING)**. Một phán quyết chỉ được hệ thống chấp nhận khi và chỉ khi nó là hệ quả logic kéo theo từ cơ sở tri thức công khai hiện tại:
+$$KB_t \models C_i \quad \text{hoặc} \quad KB_t \models \neg C_i$$
 
-> 📖 **Hướng dẫn chi tiết**: Xem luật chơi, ý nghĩa các loại manh mối và ví dụ một ván suy luận mẫu tại file [**`cachchoi.md`**](cachchoi.md).
-
-Dự án này triển khai toàn diện:
-1. **Mã hóa logic mệnh đề & CNF Encoder**: chuyển đổi tự động 6 dạng manh mối chuẩn (`FACT`, `SAME`, `DIFFERENT`, `EXACTLY`, `AT_LEAST`, `AT_MOST`) cùng các phần mở rộng (`PARITY`, `COMPARE`, vùng nâng cao `CORNERS`, `COMMON_NEIGHBORS`).
-2. **Bộ giải SAT DPLL**: thuật toán Davis-Putnam-Logemann-Loveland hoàn chỉnh với lan truyền đơn vị (unit propagation), phát hiện xung đột (conflict detection), chọn biến xác định, đệ quy & quay lui, ghi nhận thống kê.
-3. **Logic Agent suy diễn tự động**: phân loại `CRIMINAL`, `INNOCENT`, `UNKNOWN`, `INCONSISTENT`, nhật ký suy diễn `DeductionTrace`, kiểm tra nghiệm duy nhất (`Uniqueness Check`) và tính năng gợi ý `Hint`.
-4. **Game Engine**: quản lý trạng thái bí mật, độc lập hoàn toàn với Logic Agent, kiểm duyệt phán quyết (`ACCEPTED`, `NOT_PROVABLE`, `CONTRADICTED`).
-5. **Giao diện đồ họa (GUI)** là ứng dụng web React kết nối với Python API server, có giao diện theme sáng, hỗ trợ chơi thủ công, highlight ô liên quan khi chọn clue, gợi ý và tự động giải.
+### Điểm nổi bật của đồ án:
+1. **100% Pure Python**: Toàn bộ mô hình hóa logic mệnh đề, bộ giải SAT DPLL, cơ chế lan truyền đơn vị, quay lui, tác tử suy luận và công cụ kiểm chứng nghiệm duy nhất được lập trình từ đầu (from scratch) bằng Python thuần, **hoàn toàn không sử dụng thư viện SAT bên thứ ba** (không dùng PySAT, Z3, Minisat,...).
+2. **Kiến trúc phân tầng chuyên nghiệp**: Phân định rõ ràng giữa Game Engine (quản trị luật chơi và che giấu đáp án bí mật), Logic Agent (chỉ đọc thông tin công khai), DPLL Solver và Giao diện người dùng.
+3. **Bộ kiểm thử toàn diện**: 19/19 unit test tự động (bao gồm đối chiếu tương đương ngữ nghĩa $2^k$ giữa CNF Encoder và Evaluator, kiểm chứng ví dụ lý thuyết trang 4 của đề bài).
+4. **Giao diện Web hiện đại**: Ứng dụng web React kết nối với máy chủ Python HTTP API, hỗ trợ đầy đủ các thao tác chơi thủ công, highlight manh mối trực quan, gợi ý spotlight (Hint), tự động giải (Auto Step, Auto Solve) và xem toàn bộ nhật ký chứng minh (Deduction Trace Drawer).
 
 ---
 
-## 2. Phân Công Công Việc & Cấu Trúc File (Task Distribution)
+## 2. Thông Tin Thành Viên Nhóm (Team Members)
 
-Cấu trúc file tuân thủ chính xác 100% theo bảng phân công công việc của nhóm:
-
-| Thành viên | Nhiệm vụ chính | Chi tiết công việc | Danh sách File thực hiện |
-| :--- | :--- | :--- | :--- |
-| **Trưởng nhóm / TV A** | Logic Agent, tích hợp hệ thống & quản lý nhóm | Cài đặt agent phân loại entailment bằng $KB \land \neg C_i$ và $KB \land C_i$, vòng lặp suy diễn (deduction loop), deduction trace, kiểm tra uniqueness, Hint. Chốt interface chung giữa các module. Tạo repo Git, `README.md`, `requirements.txt`, `main.py`, `.gitignore`. | `agent/agent.py`<br>`agent/trace.py`<br>`agent/uniqueness.py`<br>`main.py`<br>`README.md`<br>`requirements.txt`<br>`.gitignore` |
-| **Thành viên B** | Bộ giải SAT (DPLL) & Thực nghiệm | Cài đặt DPLL gồm unit propagation, conflict detection, chọn biến xác định, đệ quy và backtracking, hỗ trợ assumptions, thống kê decisions / propagations / backtracks / runtime. Viết unit test (kể cả ví dụ trang 4). Viết script benchmark trên puzzle 3x3, 4x4, 5x5, xuất CSV và biểu đồ. | `sat/dpll.py`<br>`tests/test_dpll.py`<br>`experiments/run_benchmarks.py` |
-| **Thành viên C** | CNF Encoder | Ánh xạ biến $C_i$ xác định, validate clue, mã hoá 6 clue sang CNF bằng direct combinatorial encoding, cài 2 extension (PARITY, COMPARE, CORNERS), thêm unit clause cho verdict đã biết, hàm `build_kb(t)`, thống kê biến và clause. Test encoder so với evaluator bằng brute force $2^n$ assignment. | `logic/var_map.py`<br>`logic/encoder.py`<br>`logic/kb.py`<br>`tests/test_encoder.py` |
-| **Thành viên D** | Game Engine, Clue model & Bộ puzzle | Dataclass `Clue` và `Region` (row, col, neighbors, explicit, corners), parser JSON, semantic evaluator cho 6 clue và extension, GameEngine (`submit_verdict` trả ACCEPTED / NOT_PROVABLE / CONTRADICTED, reveal), PublicState. Tạo bộ puzzle 3x3, 4x4, 5x5 và kiểm tra nghiệm duy nhất. | `engine/clue.py`<br>`engine/region.py`<br>`engine/evaluator.py`<br>`engine/game_engine.py`<br>`puzzles/*.json` |
-| **Thành viên E** | GUI & Video demo | Dựng Modern GUI hiển thị lưới, toạ độ, tên và nghề, thẻ úp/lật, giao diện theme sáng với nền tím pastel, thẻ trắng và hiệu ứng kính mờ (procedural SVG avatars). Cho phép gọi CRIMINAL / INNOCENT, hiển thị NOT_PROVABLE / CONTRADICTED, chọn clue và highlight ô liên quan, các chức năng chọn màn (Load) / Restart / Hint / Auto Solve, nối GUI với Engine và Agent qua Python API server. Kịch bản quay video demo 5-10 phút. | `web/` (React Modern GUI)<br>`gui/app.py`<br>`gui/web_server.py`<br>`demo_script.md` |
+| STT | Họ và tên | Mã số sinh viên (MSSV) | Vai trò |
+| :---: | :--- | :---: | :---: |
+| 1 | **Lương Nguyễn Hoàng Vũ** | `24120493` | Trưởng nhóm |
+| 2 | **Trần Minh Tiến** | `24120465` | Thành viên |
+| 3 | **Huỳnh Chí Thoại** | `24120457` | Thành viên |
+| 4 | **Đỗ Trung Kiên** | `24120350` | Thành viên |
+| 5 | **Lê Phạm Đăng Khiêm** | `24120341` | Thành viên |
 
 ---
 
-## 3. Cài Đặt & Môi Trường Chạy (Installation)
+## 3. Cấu Trúc Thư Mục Dự Án (Project Structure)
 
-### 3.1. Yêu cầu hệ thống
-* **Python**: Khuyến nghị Python 3.9 trở lên (đã kiểm thử tương thích hoàn hảo trên Python 3.11).
-* **Matplotlib**: Dùng để vẽ biểu đồ trực quan hóa kết quả thực nghiệm benchmark.
-* **Web Client**: Đã được biên dịch sẵn trong `web/dist`, chạy trực tiếp thông qua Python HTTP server mà không bắt buộc cài đặt Node.js hay npm.
-
-### 3.2. Cài đặt thư viện
-Mở terminal tại thư mục gốc của project và chạy lệnh:
-```bash
-pip install -r requirements.txt
+```text
+Project2/
+├── agent/                      # Tác tử suy luận logic
+│   ├── agent.py                # LogicAgent: phân loại entailment, deduction loop, Hint
+│   ├── trace.py                # DeductionTrace & cấu trúc lưu vết chứng minh
+│   └── uniqueness.py           # Kiểm tra tính nghiệm duy nhất (DPLL blocking clause + brute-force)
+├── engine/                     # Game Engine & mô hình trò chơi
+│   ├── clue.py                 # Dataclass Clue và chuyển đổi hiển thị
+│   ├── region.py               # Định nghĩa các vùng: ROW, COL, NEIGHBORS, EXPLICIT, CORNERS
+│   ├── evaluator.py            # Direct Semantic Evaluator (đánh giá chân trị không qua CNF)
+│   └── game_engine.py          # Quản trị luật chơi, cô lập secret truth, kiểm duyệt phán quyết
+├── experiments/                # Thực nghiệm & Benchmark
+│   ├── run_benchmarks.py       # Script chạy thực nghiệm tự động trên toàn bộ câu đố
+│   ├── benchmark_results.csv   # Dữ liệu đo đạc 6 chỉ số lưu dạng CSV
+│   └── benchmark_plots.png     # Biểu đồ trực quan hóa 4 thông số hiệu năng
+├── gui/                        # Tầng kết nối Giao diện
+│   ├── app.py                  # Điểm khởi chạy GUI tiện lợi
+│   └── web_server.py           # Python HTTP API Server phục vụ Web GUI và REST API
+├── logic/                      # Biểu diễn Logic mệnh đề & CNF Encoder
+│   ├── var_map.py              # Ánh xạ xác định tọa độ (r, c) <-> Biến SAT 1..N^2
+│   ├── encoder.py              # Thuật toán chuyển đổi 8 dạng manh mối sang CNF
+│   └── kb.py                   # Quản lý cơ sở tri thức tăng dần KB_t
+├── puzzles/                    # Bộ câu đố chuẩn hóa (3x3, 4x4, 5x5)
+│   ├── puzzle_3x3_1.json       # Lưới 3x3 - Mức độ cơ bản
+│   ├── puzzle_3x3_2.json       # Lưới 3x3 - Manh mối Parity / So sánh
+│   ├── puzzle_4x4_1.json       # Lưới 4x4 - Tiêu chuẩn Knotwise
+│   ├── puzzle_4x4_2.json       # Lưới 4x4 - Ràng buộc Exact row/col
+│   ├── puzzle_4x4_3.json       # Lưới 4x4 - Suy luận láng giềng chuỗi
+│   └── puzzle_5x5_1.json       # Lưới 5x5 - Thử thách mở rộng (Stress test)
+├── sat/                        # Bộ giải SAT từ đầu
+│   ├── solver_interface.py     # Interface trừu tượng cho SAT Solver
+│   └── dpll.py                 # Thuật toán DPLL thuần túy (Unit Prop, Backtracking, Assumptions)
+├── tests/                      # Bộ kiểm thử tự động
+│   ├── test_dpll.py            # Unit test thuật toán DPLL & ví dụ Mục 3.4 đề bài
+│   └── test_encoder.py         # Kiểm thử đối chiếu vét cạn 2^k giữa Encoder và Evaluator
+├── web/                        # Mã nguồn ứng dụng Web GUI (React, Tailwind CSS, Vite)
+│   ├── dist/                   # Bản build đóng gói sẵn (chạy ngay mà không cần cài Node.js)
+│   └── src/                    # Mã nguồn React components & avatars
+├── main.py                     # Entry point trung tâm của toàn bộ dự án
+├── requirements.txt            # Danh sách thư viện phụ trợ (matplotlib)
+├── .gitignore                  # Cấu hình Git sạch sẽ
+└── README.md                   # Báo cáo tổng quan dự án
 ```
 
 ---
 
-## 4. Hướng Dẫn Sử Dụng (How to Run)
+## 4. Cơ Sở Lý Thuyết & Thuật Toán (Theoretical Formulation)
 
-### 4.1. Khởi chạy Giao diện Đồ họa (GUI Mode)
+### 4.1. Biến mệnh đề (Propositional Variables)
+Với mỗi nhân vật tại tọa độ ô $(r, c)$ trên lưới $N \times N$, hệ thống định nghĩa một biến mệnh đề logic cơ bản:
+$$C_i = \begin{cases} \text{True} & \text{nếu nhân vật } i \text{ là Criminal (Tội phạm)} \\ \text{False} & \text{nếu nhân vật } i \text{ là Innocent (Vô tội)} \end{cases}$$
+Hàm ánh xạ song ánh xác định: $\text{var}(r, c) = r \cdot N + c + 1 \in [1, N^2]$. Các biến phụ trợ ($Aux$) nếu phát sinh sẽ được đánh số từ $N^2 + 1$ trở đi và tách biệt hoàn toàn.
 
-Chỉ cần chạy lệnh sau từ thư mục gốc, hệ thống sẽ tự động khởi động máy chủ API tích hợp trong Python và mở giao diện người dùng trên trình duyệt:
+### 4.2. Ngữ nghĩa Manh Mối & Mã hóa CNF (Clue Semantics & CNF Encoding)
+Hệ thống hỗ trợ 6 dạng manh mối bắt buộc cùng các phần mở rộng:
+1. **FACT**: $C_i$ (nếu là Criminal) hoặc $\neg C_i$ (nếu là Innocent) $\implies$ Đưa trực tiếp thành unit clause $[C_i]$ hoặc $[-C_i]$.
+2. **SAME**: $C_i \leftrightarrow C_j \implies (\neg C_i \lor C_j) \land (C_i \lor \neg C_j) \implies [-C_i, C_j], [C_i, -C_j]$.
+3. **DIFFERENT**: $C_i \oplus C_j \implies (C_i \lor C_j) \land (\neg C_i \lor \neg C_j) \implies [C_i, C_j], [-C_i, -C_j]$.
+4. **EXACTLY $k$**: Tổng số tội phạm trong vùng $R$ bằng đúng $k$. Mã hóa kết hợp: $\text{AtLeast}(R, k) \land \text{AtMost}(R, k)$.
+5. **AT\_LEAST $k$**: Trong mọi tập con gồm $|R| - k + 1$ phần tử của $R$, phải có ít nhất 1 tội phạm:
+   $$\bigwedge_{S \subseteq R, |S| = |R| - k + 1} \left( \bigvee_{v \in S} v \right)$$
+6. **AT\_MOST $k$**: Trong mọi tập con gồm $k + 1$ phần tử của $R$, không thể tất cả đều là tội phạm:
+   $$\bigwedge_{S \subseteq R, |S| = k + 1} \left( \bigvee_{v \in S} \neg v \right)$$
+7. **PARITY (Mở rộng)**: Tính chẵn/lẻ số lượng tội phạm trong vùng.
+8. **COMPARE (Mở rộng)**: So sánh số tội phạm giữa hai vùng $R_1$ và $R_2$ ($>$, $<$, $=$).
+
+### 4.3. Xây dựng Cơ sở Tri thức ($KB_t$)
+Tại bước suy luận $t$, tri thức công khai bao gồm các manh mối đã lộ và các phán quyết đã chứng minh:
+$$KB_t = \left( \bigwedge_{\text{clue} \in \text{RevealedClues}_t} \text{CNF}(\text{clue}) \right) \land \left( \bigwedge_{(c, \text{status}) \in \text{ProvedVerdicts}_t} \text{UnitClause}(c, \text{status}) \right)$$
+*Nguyên tắc bất khả xâm phạm: $KB_t$ tuyệt đối không chứa manh mối của các ô đang úp hay đáp án ngầm của Game Engine.*
+
+### 4.4. Kiểm tra Kéo theo Ngữ nghĩa (Entailment via SAT)
+Để phân loại một ô chưa giải $C_i$ mà không đoán mò:
+* **Chứng minh $C_i$ là Criminal**: Kiểm tra $KB_t \models C_i \iff KB_t \land \neg C_i \text{ là UNSAT}$.
+* **Chứng minh $C_i$ là Innocent**: Kiểm tra $KB_t \models \neg C_i \iff KB_t \land C_i \text{ là UNSAT}$.
+* **Trường hợp Unknown**: Nếu cả $KB_t \land \neg C_i$ và $KB_t \land C_i$ đều SAT $\implies$ Chưa đủ thông tin chứng minh, tuyệt đối không đoán.
+* **Trường hợp Inconsistent**: Nếu cả hai đều UNSAT $\implies$ Cơ sở tri thức mâu thuẫn.
+
+---
+
+## 5. Hướng Dẫn Cài Đặt & Sử Dụng (How to Run)
+
+### 5.1. Yêu cầu môi trường
+* **Python**: Khuyến nghị Python 3.9 trở lên (đã kiểm thử ổn định 100% trên Python 3.10 và 3.11).
+* **Cài đặt thư viện phụ trợ**:
+  ```bash
+  pip install -r requirements.txt
+  ```
+  *(Lưu ý: `matplotlib` là thư viện duy nhất dùng để vẽ biểu đồ benchmark; toàn bộ logic và GUI đều chạy bằng thư viện chuẩn của Python).*
+
+---
+
+### 5.2. Chế độ Giao diện Đồ họa (Web GUI Mode)
+
+Chỉ cần gõ lệnh sau từ thư mục gốc của đồ án, hệ thống sẽ tự động khởi động server tích hợp và mở trình duyệt:
 ```bash
 python main.py
 ```
@@ -61,84 +134,77 @@ Hoặc:
 ```bash
 python gui/app.py
 ```
-Mở `http://localhost:8000` để sử dụng giao diện web theme sáng.
 
-* Nền tím pastel, thẻ trắng bo tròn và hiệu ứng kính mờ.
-* 100% vector SVG procedural avatar với kiểu tóc (ngắn, dài, búi, xoăn, spiky, bob), màu tóc, màu da, áo và biểu cảm phong phú.
-* Thẻ đổi màu và hiển thị manh mối sau phán quyết được chấp nhận, kèm hiệu ứng spotlight hint và các công cụ chơi.
+* Ứng dụng web hiển thị tại địa chỉ: `http://localhost:8000`.
+* **Bản phân phối web đã được biên dịch sẵn** trong thư mục `web/dist/`, cho phép người dùng khởi chạy lập tức mà **không cần cài đặt Node.js hay chạy npm**.
 
-*Nếu muốn phát triển / chạy hot-reload React dev server:*
-```bash
-cd web
-npm run dev
-```
-
-**Các thao tác trên GUI:**
-
-* **Chơi thủ công** bằng cách nhấp vào một thẻ chưa lật, rồi chọn `Call CRIMINAL` hoặc `Call INNOCENT` trong hộp thoại. Hệ thống kiểm tra logic để phản hồi phán quyết.
-  * Nếu phán quyết được chứng minh: chấp nhận (`ACCEPTED`), lật thẻ hiển thị nhãn và manh mối mới.
-  * Nếu đoán mò (chưa chứng minh được): cảnh báo `REJECTED [NOT_PROVABLE]` màu vàng-cam.
-  * Nếu đoán ngược với suy luận: cảnh báo `REJECTED [CONTRADICTED]` màu đỏ.
-* **Highlight manh mối:** Nhấp chuột vào bất kỳ manh mối nào trên thẻ đã mở. Các ô trên bàn cờ được manh mối này tham chiếu tới sẽ được viền vàng nổi bật.
-* **Gợi ý (Hint)** chỉ ra ô tiếp theo có thể chứng minh, đánh dấu ô đó bằng màu cyan và hiển thị một manh mối công khai liên quan nếu có.
-* **Chọn màn (Load)** bằng cách chọn câu đố trong menu hoặc trên thanh điều hướng.
-* **Khởi động lại** bằng nút `Restart Puzzle` để trở về các thẻ được lật ban đầu.
-* **Tự động giải** có hai chế độ.
-  * `Auto Step (Logic Agent)` thực hiện đúng một bước suy luận tiếp theo.
-  * `Auto Solve (All)` tự động suy luận từng bước cho đến khi giải xong hoặc không còn phán quyết có thể chứng minh. Nhấn `Pause Auto Solve` để dừng chạy tự động.
-* **Kiểm tra nghiệm duy nhất** bằng nút `Unique`, dùng toàn bộ manh mối để kiểm tra câu đố có đúng một nghiệm.
+**Các thao tác chính trên GUI:**
+1. **Khám phá vụ án**: Tại Main Menu, chọn 1 trong các màn chơi câu đố (3×3, 4×4, 5×5) và bấm *Investigate Case*.
+2. **Chơi thủ công**: Nhấp vào thẻ nhân vật đang úp, chọn `Call CRIMINAL` hoặc `Call INNOCENT`.
+   * Nếu được chứng minh: Nhận nhãn `ACCEPTED`, thẻ lật ra hiển thị manh mối mới.
+   * Nếu đoán mò: Cảnh báo `REJECTED [NOT_PROVABLE]`.
+   * Nếu đoán ngược suy luận: Cảnh báo `REJECTED [CONTRADICTED]`.
+3. **Highlight manh mối**: Nhấp chuột vào bất kỳ manh mối nào trên thẻ đã mở, các ô mà manh mối đó tham chiếu tới sẽ được viền vàng nổi bật.
+4. **Gợi ý (Hint)**: Bấm `Hint` để tìm ra ô tiếp theo bị ép buộc logic kèm manh mối công khai liên quan (không làm lộ đáp án ẩn).
+5. **Tự động giải (Auto Solve)**:
+   * `Auto Step (Logic Agent)`: Chạy đúng 1 bước suy luận kế tiếp.
+   * `Auto Solve (All)`: Tự động chạy toàn bộ chuỗi suy luận cho đến khi giải xong toàn bộ bàn cờ.
+6. **Kiểm tra nghiệm duy nhất (Unique)**: Bấm `Unique` để DPLL kiểm tra xem câu đố có đúng 1 mô hình thỏa mãn duy nhất hay không.
+7. **Xem nhật ký suy luận (Trace)**: Bấm nút `Trace` góc trên bên phải để xem toàn bộ lịch sử các bước chứng minh kèm truy vấn SAT.
 
 ---
 
-### 4.2. Chạy Chế độ Dòng lệnh (CLI Mode)
-Chạy trực tiếp thuật toán suy diễn trên terminal mà không cần mở GUI:
+### 5.3. Chế độ Dòng lệnh (CLI Mode)
+
+Chạy bộ giải trực tiếp trên terminal với output dạng văn bản chi tiết:
 ```bash
 python main.py --cli --puzzle puzzles/puzzle_3x3_1.json
 ```
-Lệnh sẽ in ra toàn bộ `Deduction Trace`: từng bước suy diễn, manh mối kích hoạt, các truy vấn SAT, phán quyết thu được và manh mối mới lộ diện.
+Output sẽ in rõ ràng: kết quả kiểm tra nghiệm duy nhất, từng bước suy diễn, các truy vấn SAT, thời gian chạy và phán quyết tương ứng.
 
 ---
 
-### 4.3. Chạy Kiểm Thử Tự Động (Unit Tests)
-Chạy bộ kiểm thử tự động toàn diện:
+### 5.4. Chạy Bộ Kiểm Thử Tự Động (Unit Tests)
+
+Thực thi bộ 19 unit test tự động:
 ```bash
 python main.py --test
 ```
-* Kiểm tra bộ giải DPLL: unit propagation, conflict detection, branching, ví dụ trang 4 trong đề bài.
-* Kiểm tra tương đương tuyệt đối: Brute-force $2^k$ trường hợp giữa **CNF Combinatorial Encoder** và **Direct Semantic Evaluator** cho tất cả các mẫu manh mối (`FACT`, `SAME`, `DIFFERENT`, `EXACTLY`, `AT_LEAST`, `AT_MOST`, `PARITY`, `COMPARE`).
+* Kiểm tra đầy đủ các thành phần DPLL: Lan truyền đơn vị theo chuỗi, phát hiện xung đột, phân nhánh, quay lui, và **bài toán mẫu trang 4 của đề bài**.
+* Kiểm tra đối chiếu tương đương ngữ nghĩa $2^k$ giữa CNF Encoder và Semantic Evaluator cho toàn bộ các dạng manh mối và các vùng nâng cao (`CORNERS`, `COMMON_NEIGHBORS`, `BETWEEN`).
 
 ---
 
-### 4.4. Chạy Thực Nghiệm & Đánh Giá Hiệu Năng (Benchmarks)
-Chạy đánh giá benchmark trên toàn bộ các bộ câu đố 3x3, 4x4, 5x5:
+### 5.5. Chạy Đánh Giá Hiệu Năng (Benchmarks)
+
+Thực hiện đo đạc thực nghiệm tự động trên toàn bộ các câu đố chuẩn:
 ```bash
 python main.py --benchmark
 ```
-Kết quả sẽ:
-1. In bảng tổng hợp 6 chỉ số ra màn hình.
-2. Xuất dữ liệu bảng ra file `experiments/benchmark_results.csv`.
-3. Tự động vẽ và lưu biểu đồ so sánh 4 thông số ra file `experiments/benchmark_plots.png`.
+Lệnh sẽ tự động:
+1. In bảng tổng hợp chi tiết 6 chỉ số ra màn hình console.
+2. Xuất dữ liệu ra file bảng tính [`experiments/benchmark_results.csv`](experiments/benchmark_results.csv).
+3. Vẽ và lưu đồ thị so sánh hiệu năng trực quan ra file [`experiments/benchmark_plots.png`](experiments/benchmark_plots.png).
 
 ---
 
-## 5. Kết Quả Thực Nghiệm (Benchmark Results)
+## 6. Kết Quả Thực Nghiệm (Benchmark Results)
 
-Kết quả đo đạc thực tế trên bộ câu đố chuẩn:
+Kết quả đo đạc thực tế trên hệ thống bộ câu đố (được nâng độ khó, xuất hiện cả phân nhánh và quay lui để kiểm chứng toàn diện bộ giải DPLL):
 
-| Câu đố | Lưới | Trạng thái | Biến SAT (Primary/Aux) | Mệnh đề CNF | Lần gọi SAT | Decisions / Propagations / Backtracks | Thời gian (ms) |
+| Câu đố (Puzzle) | Kích thước | Trạng thái | Biến SAT ($P+A$) | Số Mệnh đề CNF | Số lần gọi SAT | Decisions / Props / Backtracks | Thời gian (ms) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `puzzle_3x3_1.json` | 3x3 | SUCCESS | 9 / 0 | 28 | 16 | 0 / 102 / 0 | 2.55 ms |
-| `puzzle_3x3_2.json` | 3x3 | SUCCESS | 9 / 0 | 36 | 14 | 0 / 84 / 0 | 2.48 ms |
-| `puzzle_4x4_1.json` | 4x4 | SUCCESS | 16 / 0 | 76 | 76 | 0 / 746 / 0 | 13.01 ms |
-| `puzzle_4x4_2.json` | 4x4 | SUCCESS | 16 / 0 | 77 | 42 | 0 / 418 / 0 | 12.99 ms |
-| `puzzle_5x5_1.json` | 5x5 | SUCCESS | 25 / 0 | 146 | 64 | 1 / 998 / 0 | 50.66 ms |
+| `puzzle_3x3_1.json` | 3×3 | **SUCCESS** | 9 + 0 | 32 | 30 | 0 / 220 / 0 | **5.77 ms** |
+| `puzzle_3x3_2.json` | 3×3 | **SUCCESS** | 9 + 0 | 33 | 34 | 1 / 166 / 0 | **3.41 ms** |
+| `puzzle_4x4_1.json` | 4×4 | **SUCCESS** | 16 + 0 | 76 | 124 | 130 / 993 / 0 | **23.40 ms** |
+| `puzzle_4x4_2.json` | 4×4 | **SUCCESS** | 16 + 0 | 93 | 132 | 216 / 1276 / 90 | **38.67 ms** |
+| `puzzle_4x4_3.json` | 4×4 | **SUCCESS** | 16 + 0 | 94 | 148 | 185 / 1256 / 6 | **40.00 ms** |
+| `puzzle_5x5_1.json` | 5×5 | **SUCCESS** | 25 + 0 | 160 | 256 | 2379 / 3216 / 74 | **187.68 ms** |
 
-*Biểu đồ trực quan hóa chi tiết được lưu trữ tại:* `experiments/benchmark_plots.png`.
+### Nhận xét & Đánh giá:
+* **Tỷ lệ giải thành công**: **100% (6/6 câu đố)** đạt trạng thái `SUCCESS`, không có trường hợp nào bị timeout hay thất bại.
+* **Thời gian thực thi**: Bộ giải DPLL viết bằng Python thuần đạt tốc độ ấn tượng: giải quyết lưới 3×3 dưới **6 ms**, lưới 4×4 dưới **40 ms**, và lưới 5×5 phức tạp (25 biến, 160 clause) chỉ mất khoảng **187 ms**.
+* **Khả năng quay lui (Backtracking)**: Tại các câu đố nâng cao như `puzzle_4x4_2.json` (90 backtracks) và `puzzle_5x5_1.json` (74 backtracks), bộ giải thể hiện chính xác khả năng dò tìm không gian trạng thái, phát hiện xung đột và quay lui để tìm ra nghiệm duy nhất một cách hoàn hảo.
 
 ---
-
-## 6. Kịch Bản Demo Video (Demonstration Script)
-
-Chi tiết kịch bản quay video mẫu 5 - 10 phút đáp ứng trọn vẹn tiêu chí mục 4.7 của đề bài (gồm thời lượng từng phân đoạn, thao tác cần quay, lời thoại tiếng Việt) được lưu tại:
-👉 [`demo_script.md`](file:///demo_script.md)
-
+*Dự án hoàn thành phục vụ môn học Nhập môn Trí tuệ Nhân tạo (CSC14003) - Khoa Công nghệ Thông tin, Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM.*
