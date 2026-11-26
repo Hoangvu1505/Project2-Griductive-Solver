@@ -18,15 +18,15 @@ $$KB_t \models C_i \quad \text{hoặc} \quad KB_t \models \neg C_i$$
 
 ---
 
-## 2. Bảng Phân Công Nhiệm Vụ (Team & Task Distribution)
+## 2. Thông Tin Thành Viên Nhóm (Team Members)
 
-| Thành viên | MSSV | Vai trò & Nhiệm vụ chính | Chi tiết công việc thực hiện | File thực hiện |
-| :--- | :---: | :--- | :--- | :--- |
-| **Lương Nguyễn Hoàng Vũ**<br>*(Trưởng nhóm)* | `24120493` | **Logic Agent & Quản trị dự án** | • Cài đặt tác tử logic phân loại kéo theo (entailment): kiểm tra $KB_t \land \neg C_i$ và $KB_t \land C_i$ trả về `CRIMINAL`, `INNOCENT`, `UNKNOWN`, `INCONSISTENT`.<br>• Vòng lặp suy luận từng bước (deduction loop), nhật ký suy luận (Deduction Trace).<br>• Kiểm tra tính nghiệm duy nhất (Uniqueness Check) và thuật toán gợi ý (Hint).<br>• Điểm khởi chạy trung tâm `main.py`, quản lý Git, hoàn thiện tài liệu `README.md`. | `agent/agent.py`<br>`agent/trace.py`<br>`agent/uniqueness.py`<br>`main.py`<br>`README.md`<br>`requirements.txt`<br>`.gitignore` |
-| **Trần Minh Tiến** | `24120465` | **Bộ giải SAT (DPLL) & Thực nghiệm** | • Cài đặt thuật toán giải SAT DPLL: lan truyền đơn vị (unit propagation), phát hiện mâu thuẫn (conflict detection), chọn biến rẽ nhánh xác định, đệ quy và quay lui (backtracking).<br>• Hỗ trợ gán giả định (Assumptions) phục vụ truy vấn entailment.<br>• Thu thập thống kê thực nghiệm (decisions, propagations, backtracks, runtime).<br>• Viết unit test DPLL (kể cả ví dụ trang 4) và script benchmark trên bộ câu đố. | `sat/dpll.py`<br>`tests/test_dpll.py`<br>`experiments/run_benchmarks.py`<br>`experiments/benchmark_results.csv`<br>`experiments/benchmark_plots.png` |
-| **Huỳnh Chí Thoại** | `24120457` | **CNF Encoder** | • Ánh xạ biến xác định row-major ($C_i$) và cấp phát biến phụ trợ ($Aux$).<br>• Mã hóa trực tiếp 6 dạng manh mối chuẩn (`FACT`, `SAME`, `DIFFERENT`, `EXACTLY`, `AT_LEAST`, `AT_MOST`) và 2 dạng mở rộng (`PARITY`, `COMPARE`).<br>• Bổ sung unit clause cho phán quyết đã biết, hàm xây dựng $KB_t$.<br>• Viết unit test đối chiếu tương đương tuyệt đối $2^k$ giữa Encoder và Evaluator. | `logic/var_map.py`<br>`logic/encoder.py`<br>`logic/kb.py`<br>`tests/test_encoder.py` |
-| **Đỗ Trung Kiên** | `24120350` | **Game Engine & Thiết kế Puzzle** | • Cấu trúc dữ liệu `Clue`, `Region` (row, col, neighbors, explicit, corners), bộ đọc JSON.<br>• Bộ đánh giá ngữ nghĩa độc lập (Semantic Evaluator).<br>• GameEngine quản lý bí mật, giao thức lật thẻ và phản hồi phán quyết (`ACCEPTED`, `NOT_PROVABLE`, `CONTRADICTED`).<br>• Thiết kế và thẩm định bộ câu đố 3×3, 4×4, 5×5 đảm bảo 100% nghiệm duy nhất và giải được từng bước bằng logic. | `engine/clue.py`<br>`engine/region.py`<br>`engine/evaluator.py`<br>`engine/game_engine.py`<br>`puzzles/*.json` |
-| **Lê Phạm Đăng Khiêm** | `24120341` | **Giao diện Web (GUI)** | • Xây dựng Modern Web GUI bằng React + Tailwind CSS với hệ thống procedural avatar vector SVG (đa dạng kiểu tóc, màu da, trang phục).<br>• Main Menu chọn màn chơi, xem luật chơi và thông tin thành viên nhóm.<br>• Tương tác bàn cờ: gọi Criminal/Innocent, highlight ô liên quan khi chọn clue, các nút tiện ích (Restart, Hint, Auto Step, Auto Solve, Uniqueness, Trace Drawer).<br>• Kết nối giao diện với Engine và Agent qua Python HTTP API Server (`gui/web_server.py`). | `gui/web_server.py`<br>`gui/app.py`<br>`web/` *(toàn bộ mã nguồn & bản build React)* |
+| STT | Họ và tên | Mã số sinh viên (MSSV) | Vai trò |
+| :---: | :--- | :---: | :---: |
+| 1 | **Lương Nguyễn Hoàng Vũ** | `24120493` | Trưởng nhóm |
+| 2 | **Trần Minh Tiến** | `24120465` | Thành viên |
+| 3 | **Huỳnh Chí Thoại** | `24120457` | Thành viên |
+| 4 | **Đỗ Trung Kiên** | `24120350` | Thành viên |
+| 5 | **Lê Phạm Đăng Khiêm** | `24120341` | Thành viên |
 
 ---
 
