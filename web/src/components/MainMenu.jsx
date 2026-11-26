@@ -10,7 +10,6 @@ import {
   BookOpen,
   Award,
   ChevronRight,
-  Sparkles,
   Info,
   Clock,
   ExternalLink
@@ -156,9 +155,6 @@ export default function MainMenu({
       {/* Top Banner Navigation */}
       <header className="border-b border-slate-200/60 bg-white/70 backdrop-blur-xl sticky top-0 z-20 px-4 md:px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center shadow-lg shadow-violet-200/50 border border-violet-400/30">
-            <Sparkles className="w-4 h-4 text-white" />
-          </div>
           <div>
             <h1 className="font-serif font-black text-lg md:text-xl tracking-wider text-slate-800">
               GRIDUCTIVE
@@ -217,8 +213,7 @@ export default function MainMenu({
             {/* Hero Card */}
             <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-violet-500 via-pink-500 to-rose-400 p-6 md:p-8 shadow-2xl shadow-violet-200/50">
               <div className="relative z-10 max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold mb-3">
-                  <Sparkles className="w-3.5 h-3.5" />
+                <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold mb-3">
                   <span>CSC14003 - Artificial Intelligence Project</span>
                 </div>
                 <h2 className="text-2xl md:text-4xl font-serif font-black text-white tracking-tight leading-tight mb-2">
