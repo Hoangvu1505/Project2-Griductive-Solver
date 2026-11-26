@@ -1,83 +1,185 @@
 {
   "size": 4,
-  "name": "Knotwise Daily Case (4x4)",
+  "name": "Level 3 (Medium) - The Bouquet Auction (4x4)",
   "characters": [
     {
       "coord": "A1",
-      "name": "Alan",
-      "profession": "Mechanic",
+      "name": "Anya",
+      "profession": "Dealer",
       "status": "CRIMINAL",
-      "initially_revealed": true,
+      "initially_revealed": false,
       "clue": {
         "id": "clue_A1",
         "clue_type": "EXACTLY",
         "params": {
-          "k": 2,
+          "k": 3,
           "region": {
             "region_type": "ROW",
-            "param": 1
+            "param": 3
           }
         },
-        "text": "Row 1 contains exactly 2 criminals."
+        "text": "Row 3 contains exactly 3 criminals."
       }
     },
     {
       "coord": "B1",
       "name": "Brian",
-      "profession": "Painter",
+      "profession": "Tester",
       "status": "CRIMINAL",
-      "initially_revealed": true,
+      "initially_revealed": false,
       "clue": {
         "id": "clue_B1",
-        "clue_type": "SAME",
+        "clue_type": "AT_LEAST",
         "params": {
-          "target1": "B1",
-          "target2": "B2"
+          "k": 1,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "A1",
+              "C1"
+            ]
+          }
         },
-        "text": "Brian and Fern have the SAME status."
+        "text": "Brian (B1)'s neighbors in Row 1 [A1, C1] has at least 1 criminal."
       }
     },
     {
       "coord": "C1",
-      "name": "Clara",
-      "profession": "Painter",
+      "name": "Cara",
+      "profession": "Grower",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_C1",
-        "clue_type": "FACT",
+        "clue_type": "EXACTLY",
         "params": {
-          "target": "C1",
-          "status": "INNOCENT"
+          "k": 1,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "B1",
+              "B3"
+            ]
+          }
         },
-        "text": "Clara is INNOCENT."
+        "text": "Finn (B2)'s neighbors in Column B [B1, B3] contains exactly 1 criminal."
       }
     },
     {
       "coord": "D1",
-      "name": "Dana",
-      "profession": "Operator",
+      "name": "Dean",
+      "profession": "Clerk",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_D1",
-        "clue_type": "FACT",
+        "clue_type": "EXACTLY",
         "params": {
-          "target": "D1",
-          "status": "INNOCENT"
+          "k": 1,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "C1",
+              "C2",
+              "D2"
+            ]
+          }
         },
-        "text": "Dana is INNOCENT."
+        "text": "Dean (D1)'s neighbor ring [C1, C2, D2] contains exactly 1 criminal."
       }
     },
     {
       "coord": "A2",
-      "name": "Evan",
-      "profession": "Mechanic",
+      "name": "Enzo",
+      "profession": "Printer",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_A2",
         "clue_type": "EXACTLY",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "A4",
+              "B4",
+              "C4"
+            ]
+          }
+        },
+        "text": "Jonas (B3)'s neighbors in Row 4 [A4, B4, C4] contains exactly 1 criminal."
+      }
+    },
+    {
+      "coord": "B2",
+      "name": "Finn",
+      "profession": "Trimmer",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B2",
+        "clue_type": "AT_LEAST",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "B1",
+              "B3"
+            ]
+          }
+        },
+        "text": "Finn (B2)'s neighbors in Column B [B1, B3] has at least 1 criminal."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "Grant",
+      "profession": "Clerk",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "COL",
+            "param": "C"
+          }
+        },
+        "text": "Column C contains exactly 1 criminal."
+      }
+    },
+    {
+      "coord": "D2",
+      "name": "Hugo",
+      "profession": "Tester",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D2",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "D"
+          }
+        },
+        "text": "Column D contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "A3",
+      "name": "Ike",
+      "profession": "Florist",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A3",
+        "clue_type": "AT_MOST",
         "params": {
           "k": 2,
           "region": {
@@ -85,192 +187,157 @@
             "param": 2
           }
         },
-        "text": "Row 2 contains exactly 2 criminals."
-      }
-    },
-    {
-      "coord": "B2",
-      "name": "Fern",
-      "profession": "Tester",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_B2",
-        "clue_type": "SAME",
-        "params": {
-          "target1": "B2",
-          "target2": "C2"
-        },
-        "text": "Fern and Gina have the SAME status."
-      }
-    },
-    {
-      "coord": "C2",
-      "name": "Gina",
-      "profession": "Painter",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_C2",
-        "clue_type": "SAME",
-        "params": {
-          "target1": "C2",
-          "target2": "C3"
-        },
-        "text": "Gina and Kate have the SAME status."
-      }
-    },
-    {
-      "coord": "D2",
-      "name": "Hannah",
-      "profession": "Operator",
-      "status": "INNOCENT",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_D2",
-        "clue_type": "SAME",
-        "params": {
-          "target1": "D2",
-          "target2": "A3"
-        },
-        "text": "Hannah and Ivy have the SAME status."
-      }
-    },
-    {
-      "coord": "A3",
-      "name": "Ivy",
-      "profession": "Clerk",
-      "status": "INNOCENT",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_A3",
-        "clue_type": "EXACTLY",
-        "params": {
-          "k": 2,
-          "region": {
-            "region_type": "COL",
-            "param": "A"
-          }
-        },
-        "text": "Column A has exactly 2 criminals."
+        "text": "Row 2 has at most 2 criminals."
       }
     },
     {
       "coord": "B3",
-      "name": "June",
-      "profession": "Tester",
+      "name": "Jonas",
+      "profession": "Florist",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_B3",
-        "clue_type": "SAME",
+        "clue_type": "EXACTLY",
         "params": {
-          "target1": "B3",
-          "target2": "D2"
+          "k": 3,
+          "region": {
+            "region_type": "COL",
+            "param": "B"
+          }
         },
-        "text": "June and Hannah have the SAME status."
+        "text": "Column B contains exactly 3 criminals."
       }
     },
     {
       "coord": "C3",
       "name": "Kate",
-      "profession": "Driver",
+      "profession": "Printer",
       "status": "CRIMINAL",
       "initially_revealed": false,
       "clue": {
         "id": "clue_C3",
-        "clue_type": "SAME",
+        "clue_type": "DIFFERENT",
         "params": {
-          "target1": "C3",
-          "target2": "D3"
+          "target1": "A4",
+          "target2": "B4"
         },
-        "text": "Kate and Lena have the SAME status."
+        "text": "Mara (A4) and Nina (B4) have DIFFERENT statuses."
       }
     },
     {
       "coord": "D3",
-      "name": "Lena",
-      "profession": "Cleaner",
+      "name": "Lucy",
+      "profession": "Trimmer",
       "status": "CRIMINAL",
       "initially_revealed": false,
       "clue": {
         "id": "clue_D3",
-        "clue_type": "SAME",
+        "clue_type": "EXACTLY",
         "params": {
-          "target1": "D3",
-          "target2": "D4"
+          "k": 1,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "B1",
+              "D1"
+            ]
+          }
         },
-        "text": "Lena and Paul have the SAME status."
+        "text": "Cara (C1)'s neighbors in Row 1 [B1, D1] contains exactly 1 criminal."
       }
     },
     {
       "coord": "A4",
       "name": "Mara",
-      "profession": "Driver",
-      "status": "CRIMINAL",
+      "profession": "Dealer",
+      "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_A4",
-        "clue_type": "EXACTLY",
+        "clue_type": "AT_LEAST",
         "params": {
           "k": 2,
           "region": {
-            "region_type": "ROW",
-            "param": 4
+            "region_type": "EXPLICIT",
+            "param": [
+              "A3",
+              "B3",
+              "C3",
+              "A4",
+              "C4"
+            ]
           }
         },
-        "text": "Row 4 contains exactly 2 criminals."
+        "text": "Nina (B4)'s neighbor ring [A3, B3, C3, A4, C4] has at least 2 criminals."
       }
     },
     {
       "coord": "B4",
-      "name": "Noah",
-      "profession": "Clerk",
-      "status": "INNOCENT",
+      "name": "Nina",
+      "profession": "Trimmer",
+      "status": "CRIMINAL",
       "initially_revealed": false,
       "clue": {
         "id": "clue_B4",
-        "clue_type": "SAME",
+        "clue_type": "AT_MOST",
         "params": {
-          "target1": "B4",
-          "target2": "A2"
+          "k": 2,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "B4",
+              "C4",
+              "D4"
+            ]
+          }
         },
-        "text": "Noah and Evan have the SAME status."
+        "text": "Kate (C3)'s neighbors in Row 4 [B4, C4, D4] has at most 2 criminals."
       }
     },
     {
       "coord": "C4",
-      "name": "Owen",
-      "profession": "Clerk",
+      "name": "Otis",
+      "profession": "Host",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_C4",
-        "clue_type": "EXACTLY",
+        "clue_type": "AT_LEAST",
         "params": {
           "k": 2,
           "region": {
-            "region_type": "ROW",
-            "param": 3
+            "region_type": "EXPLICIT",
+            "param": [
+              "D2",
+              "D3",
+              "D4"
+            ]
           }
         },
-        "text": "Row 3 contains exactly 2 criminals."
+        "text": "Kate (C3)'s neighbors in Column D [D2, D3, D4] has at least 2 criminals."
       }
     },
     {
       "coord": "D4",
-      "name": "Paul",
-      "profession": "Tester",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
+      "name": "Priya",
+      "profession": "Host",
+      "status": "INNOCENT",
+      "initially_revealed": true,
       "clue": {
         "id": "clue_D4",
-        "clue_type": "DIFFERENT",
+        "clue_type": "EXACTLY",
         "params": {
-          "target1": "D4",
-          "target2": "B4"
+          "k": 0,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "C4",
+              "D4"
+            ]
+          }
         },
-        "text": "Paul and Noah have DIFFERENT statuses."
+        "text": "Lucy (D3)'s neighbors in Row 4 [C4, D4] contains NO criminals (0 criminals)."
       }
     }
   ]

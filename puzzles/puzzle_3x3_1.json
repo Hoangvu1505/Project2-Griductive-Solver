@@ -1,163 +1,161 @@
 {
   "size": 3,
-  "name": "The Village Mystery (3x3)",
+  "name": "Level 1 (Easy) - The Gallery Opening (3x3)",
   "characters": [
     {
       "coord": "A1",
-      "name": "Abel",
-      "profession": "Cook",
+      "name": "Ada",
+      "profession": "Curator",
       "status": "CRIMINAL",
-      "initially_revealed": false,
+      "initially_revealed": true,
       "clue": {
         "id": "clue_A1",
-        "clue_type": "DIFFERENT",
+        "clue_type": "FACT",
         "params": {
-          "target1": "A1",
-          "target2": "A2"
+          "target": "B3",
+          "status": "CRIMINAL"
         },
-        "text": "Abel and Derek (A2) have DIFFERENT statuses."
+        "text": "Hugo (B3) is CRIMINAL."
       }
     },
     {
       "coord": "B1",
-      "name": "Bea",
+      "name": "Ben",
       "profession": "Guard",
-      "status": "INNOCENT",
-      "initially_revealed": true,
+      "status": "CRIMINAL",
+      "initially_revealed": false,
       "clue": {
         "id": "clue_B1",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "A1",
+          "target2": "B1"
+        },
+        "text": "Ada (A1) and Ben (B1) have the SAME status."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Cara",
+      "profession": "Painter",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C1",
         "clue_type": "EXACTLY",
         "params": {
           "k": 2,
           "region": {
             "region_type": "ROW",
-            "param": 1
+            "param": 3
           }
         },
-        "text": "Row 1 contains exactly 2 criminals."
-      }
-    },
-    {
-      "coord": "C1",
-      "name": "Clara",
-      "profession": "Detective",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_C1",
-        "clue_type": "SAME",
-        "params": {
-          "target1": "C1",
-          "target2": "B2"
-        },
-        "text": "Clara and Eliza (B2) have the SAME status."
+        "text": "Row 3 contains exactly 2 criminals."
       }
     },
     {
       "coord": "A2",
-      "name": "Derek",
-      "profession": "Clerk",
+      "name": "Dev",
+      "profession": "Pilot",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_A2",
-        "clue_type": "SAME",
+        "clue_type": "FACT",
         "params": {
-          "target1": "A2",
-          "target2": "C2"
+          "target": "C2",
+          "status": "CRIMINAL"
         },
-        "text": "Derek and Franz (C2) have the SAME status."
+        "text": "Finn (C2) is CRIMINAL."
       }
     },
     {
       "coord": "B2",
-      "name": "Eliza",
-      "profession": "Doctor",
-      "status": "CRIMINAL",
+      "name": "Elle",
+      "profession": "Sculptor",
+      "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_B2",
         "clue_type": "SAME",
         "params": {
-          "target1": "B2",
-          "target2": "A3"
+          "target1": "B1",
+          "target2": "C2"
         },
-        "text": "Eliza and Grant (A3) have the SAME status."
+        "text": "Ben (B1) and Finn (C2) have the SAME status."
       }
     },
     {
       "coord": "C2",
-      "name": "Franz",
-      "profession": "Farmer",
-      "status": "INNOCENT",
+      "name": "Finn",
+      "profession": "Critic",
+      "status": "CRIMINAL",
       "initially_revealed": false,
       "clue": {
         "id": "clue_C2",
-        "clue_type": "PARITY",
+        "clue_type": "EXACTLY",
         "params": {
-          "parity": "ODD",
+          "k": 1,
           "region": {
-            "region_type": "COL",
-            "param": "C"
+            "region_type": "ROW",
+            "param": 2
           }
         },
-        "text": "Column C criminal count is ODD."
+        "text": "Row 2 contains exactly 1 criminal."
       }
     },
     {
       "coord": "A3",
-      "name": "Grant",
-      "profession": "Guard",
-      "status": "CRIMINAL",
+      "name": "Gwen",
+      "profession": "Dealer",
+      "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_A3",
         "clue_type": "EXACTLY",
         "params": {
-          "k": 0,
+          "k": 2,
           "region": {
-            "region_type": "EXPLICIT",
-            "param": [
-              "B3"
-            ]
+            "region_type": "COL",
+            "param": "C"
           }
         },
-        "text": "Hannah (B3) is INNOCENT."
+        "text": "Column C contains exactly 2 criminals."
       }
     },
     {
       "coord": "B3",
-      "name": "Hannah",
-      "profession": "Artist",
-      "status": "INNOCENT",
+      "name": "Hugo",
+      "profession": "Collector",
+      "status": "CRIMINAL",
       "initially_revealed": false,
       "clue": {
         "id": "clue_B3",
         "clue_type": "FACT",
         "params": {
-          "target": "C3",
-          "status": "INNOCENT"
+          "target": "B1",
+          "status": "CRIMINAL"
         },
-        "text": "Ivy (C3) is INNOCENT."
+        "text": "Ben (B1) is CRIMINAL."
       }
     },
     {
       "coord": "C3",
-      "name": "Ivy",
-      "profession": "Scholar",
-      "status": "INNOCENT",
-      "initially_revealed": false,
+      "name": "Isla",
+      "profession": "Restorer",
+      "status": "CRIMINAL",
+      "initially_revealed": true,
       "clue": {
         "id": "clue_C3",
-        "clue_type": "AT_LEAST",
+        "clue_type": "EXACTLY",
         "params": {
           "k": 1,
           "region": {
-            "region_type": "ROW",
-            "param": 3
+            "region_type": "COL",
+            "param": "A"
           }
         },
-        "text": "Row 3 has at least 1 criminal."
+        "text": "Column A contains exactly 1 criminal."
       }
     }
   ]

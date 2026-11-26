@@ -1,16 +1,35 @@
 {
   "size": 4,
-  "name": "The Royal Castle Intrigue (4x4)",
+  "name": "Level 4 (Tricky) - The Harbor Manifest (4x4)",
   "characters": [
     {
       "coord": "A1",
-      "name": "Arthur",
-      "profession": "King",
-      "status": "INNOCENT",
-      "initially_revealed": true,
+      "name": "Alec",
+      "profession": "Captain",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
       "clue": {
         "id": "clue_A1",
-        "clue_type": "EXACTLY",
+        "clue_type": "AT_LEAST",
+        "params": {
+          "k": 3,
+          "region": {
+            "region_type": "COL",
+            "param": "B"
+          }
+        },
+        "text": "Column B has at least 3 criminals."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Bryn",
+      "profession": "Customs",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "AT_MOST",
         "params": {
           "k": 2,
           "region": {
@@ -18,132 +37,232 @@
             "param": 1
           }
         },
-        "text": "Row 1 contains exactly 2 criminals."
-      }
-    },
-    {
-      "coord": "B1",
-      "name": "Boris",
-      "profession": "Knight",
-      "status": "CRIMINAL",
-      "initially_revealed": true,
-      "clue": {
-        "id": "clue_B1",
-        "clue_type": "SAME",
-        "params": {
-          "target1": "B1",
-          "target2": "C1"
-        },
-        "text": "Boris and Cedric have the SAME status."
+        "text": "Row 1 has at most 2 criminals."
       }
     },
     {
       "coord": "C1",
-      "name": "Cedric",
-      "profession": "Bishop",
-      "status": "CRIMINAL",
+      "name": "Cora",
+      "profession": "Broker",
+      "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_C1",
-        "clue_type": "DIFFERENT",
+        "clue_type": "AT_LEAST",
         "params": {
-          "target1": "C1",
-          "target2": "D1"
+          "k": 3,
+          "region": {
+            "region_type": "CORNERS"
+          }
         },
-        "text": "Cedric and Daniel have DIFFERENT statuses."
+        "text": "The 4 corners has at least 3 criminals."
       }
     },
     {
       "coord": "D1",
-      "name": "Daniel",
-      "profession": "Archer",
+      "name": "Dane",
+      "profession": "Rigger",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_D1",
         "clue_type": "SAME",
         "params": {
-          "target1": "D1",
-          "target2": "B2"
+          "target1": "A4",
+          "target2": "C4"
         },
-        "text": "Daniel and Felix have the SAME status."
+        "text": "Mina (A4) and Orla (C4) have the SAME status."
       }
     },
     {
       "coord": "A2",
-      "name": "Edward",
-      "profession": "Blacksmith",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
+      "name": "Eden",
+      "profession": "Navigator",
+      "status": "INNOCENT",
+      "initially_revealed": true,
       "clue": {
         "id": "clue_A2",
-        "clue_type": "SAME",
+        "clue_type": "DIFFERENT",
         "params": {
           "target1": "A2",
-          "target2": "D2"
+          "target2": "B3"
         },
-        "text": "Edward and Harold have the SAME status."
+        "text": "Eden (A2) and Jude (B3) have DIFFERENT statuses."
       }
     },
     {
       "coord": "B2",
-      "name": "Felix",
-      "profession": "Baker",
+      "name": "Ford",
+      "profession": "Purser",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_B2",
-        "clue_type": "SAME",
+        "clue_type": "EXACTLY",
         "params": {
-          "target1": "B2",
-          "target2": "C2"
+          "k": 3,
+          "region": {
+            "region_type": "COL",
+            "param": "B"
+          }
         },
-        "text": "Felix and Gabriel have the SAME status."
+        "text": "Column B contains exactly 3 criminals."
       }
     },
     {
       "coord": "C2",
-      "name": "Gabriel",
-      "profession": "Mason",
+      "name": "Gail",
+      "profession": "Inspector",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_C2",
-        "clue_type": "EXACTLY",
+        "clue_type": "PARITY",
         "params": {
-          "k": 2,
+          "parity": "EVEN",
           "region": {
             "region_type": "ROW",
             "param": 2
           }
         },
-        "text": "Row 2 contains exactly 2 criminals."
+        "text": "Row 2 has an EVEN number of criminals."
       }
     },
     {
       "coord": "D2",
-      "name": "Harold",
-      "profession": "Hunter",
-      "status": "CRIMINAL",
+      "name": "Hale",
+      "profession": "Bosun",
+      "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_D2",
-        "clue_type": "SAME",
+        "clue_type": "EXACTLY",
         "params": {
-          "target1": "D2",
-          "target2": "D3"
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "C"
+          }
         },
-        "text": "Harold and Luke have the SAME status."
+        "text": "Column C contains exactly 2 criminals."
       }
     },
     {
       "coord": "A3",
-      "name": "Ivan",
-      "profession": "Scribe",
-      "status": "CRIMINAL",
+      "name": "Ines",
+      "profession": "Courier",
+      "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_A3",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "COL",
+            "param": "D"
+          }
+        },
+        "text": "Column D contains exactly 1 criminal."
+      }
+    },
+    {
+      "coord": "B3",
+      "name": "Jude",
+      "profession": "Surveyor",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B3",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "B2",
+          "target2": "B3"
+        },
+        "text": "Ford (B2) and Jude (B3) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "C3",
+      "name": "Kira",
+      "profession": "Dockhand",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C3",
+        "clue_type": "AT_MOST",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "D"
+          }
+        },
+        "text": "Column D has at most 2 criminals."
+      }
+    },
+    {
+      "coord": "D3",
+      "name": "Lyle",
+      "profession": "Signalman",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_D3",
+        "clue_type": "AT_MOST",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "A3",
+              "C3"
+            ]
+          }
+        },
+        "text": "Jude (B3)'s neighbors in Row 3 [A3, C3] has at most 1 criminal."
+      }
+    },
+    {
+      "coord": "A4",
+      "name": "Mina",
+      "profession": "Auditor",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_A4",
+        "clue_type": "SAME",
+        "params": {
+          "target1": "C3",
+          "target2": "C4"
+        },
+        "text": "Kira (C3) and Orla (C4) have the SAME status."
+      }
+    },
+    {
+      "coord": "B4",
+      "name": "Nash",
+      "profession": "Stevedore",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B4",
+        "clue_type": "DIFFERENT",
+        "params": {
+          "target1": "A1",
+          "target2": "D1"
+        },
+        "text": "Alec (A1) and Dane (D1) have DIFFERENT statuses."
+      }
+    },
+    {
+      "coord": "C4",
+      "name": "Orla",
+      "profession": "Pilot",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C4",
         "clue_type": "EXACTLY",
         "params": {
           "k": 2,
@@ -156,112 +275,10 @@
       }
     },
     {
-      "coord": "B3",
-      "name": "Jack",
-      "profession": "Weaver",
-      "status": "INNOCENT",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_B3",
-        "clue_type": "EXACTLY",
-        "params": {
-          "k": 4,
-          "region": {
-            "region_type": "NEIGHBORS",
-            "param": "B3"
-          }
-        },
-        "text": "Jack has exactly 4 criminal neighbors (including diagonals)."
-      }
-    },
-    {
-      "coord": "C3",
-      "name": "Karl",
-      "profession": "Cooper",
-      "status": "INNOCENT",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_C3",
-        "clue_type": "DIFFERENT",
-        "params": {
-          "target1": "C3",
-          "target2": "B4"
-        },
-        "text": "Karl and Noah have DIFFERENT statuses."
-      }
-    },
-    {
-      "coord": "D3",
-      "name": "Luke",
-      "profession": "Fletcher",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_D3",
-        "clue_type": "SAME",
-        "params": {
-          "target1": "D3",
-          "target2": "A3"
-        },
-        "text": "Luke and Ivan have the SAME status."
-      }
-    },
-    {
-      "coord": "A4",
-      "name": "Mark",
-      "profession": "Miner",
-      "status": "INNOCENT",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_A4",
-        "clue_type": "FACT",
-        "params": {
-          "target": "A4",
-          "status": "INNOCENT"
-        },
-        "text": "Mark is INNOCENT."
-      }
-    },
-    {
-      "coord": "B4",
-      "name": "Noah",
-      "profession": "Sailor",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_B4",
-        "clue_type": "SAME",
-        "params": {
-          "target1": "B4",
-          "target2": "C4"
-        },
-        "text": "Noah and Owen have the SAME status."
-      }
-    },
-    {
-      "coord": "C4",
-      "name": "Owen",
-      "profession": "Miller",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_C4",
-        "clue_type": "EXACTLY",
-        "params": {
-          "k": 2,
-          "region": {
-            "region_type": "ROW",
-            "param": 4
-          }
-        },
-        "text": "Row 4 contains exactly 2 criminals."
-      }
-    },
-    {
       "coord": "D4",
-      "name": "Peter",
-      "profession": "Warden",
-      "status": "INNOCENT",
+      "name": "Paul",
+      "profession": "Watchman",
+      "status": "CRIMINAL",
       "initially_revealed": false,
       "clue": {
         "id": "clue_D4",
@@ -269,10 +286,11 @@
         "params": {
           "parity": "EVEN",
           "region": {
-            "region_type": "CORNERS"
+            "region_type": "COL",
+            "param": "C"
           }
         },
-        "text": "The 4 corners have an EVEN count of criminals."
+        "text": "Column C has an EVEN number of criminals."
       }
     }
   ]

@@ -1,15 +1,53 @@
 {
   "size": 3,
-  "name": "The Manor Case (3x3)",
+  "name": "Level 2 (Easy-Medium) - The Clocktower Alibi (3x3)",
   "characters": [
     {
       "coord": "A1",
-      "name": "Arthur",
-      "profession": "Lord",
+      "name": "Alma",
+      "profession": "Watchmaker",
       "status": "CRIMINAL",
-      "initially_revealed": true,
+      "initially_revealed": false,
       "clue": {
         "id": "clue_A1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "COL",
+            "param": "C"
+          }
+        },
+        "text": "Column C contains exactly 1 criminal."
+      }
+    },
+    {
+      "coord": "B1",
+      "name": "Bram",
+      "profession": "Bellringer",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_B1",
+        "clue_type": "EXACTLY",
+        "params": {
+          "k": 2,
+          "region": {
+            "region_type": "COL",
+            "param": "A"
+          }
+        },
+        "text": "Column A contains exactly 2 criminals."
+      }
+    },
+    {
+      "coord": "C1",
+      "name": "Cleo",
+      "profession": "Archivist",
+      "status": "INNOCENT",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C1",
         "clue_type": "EXACTLY",
         "params": {
           "k": 2,
@@ -22,136 +60,127 @@
       }
     },
     {
-      "coord": "B1",
-      "name": "Bella",
-      "profession": "Cook",
-      "status": "CRIMINAL",
-      "initially_revealed": true,
-      "clue": {
-        "id": "clue_B1",
-        "clue_type": "DIFFERENT",
-        "params": {
-          "target1": "B1",
-          "target2": "C1"
-        },
-        "text": "Bella and Charles have DIFFERENT statuses."
-      }
-    },
-    {
-      "coord": "C1",
-      "name": "Charles",
-      "profession": "Gardener",
-      "status": "INNOCENT",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_C1",
-        "clue_type": "SAME",
-        "params": {
-          "target1": "C1",
-          "target2": "A2"
-        },
-        "text": "Charles and Diana have the SAME status."
-      }
-    },
-    {
       "coord": "A2",
-      "name": "Diana",
-      "profession": "Maid",
-      "status": "INNOCENT",
+      "name": "Dante",
+      "profession": "Locksmith",
+      "status": "CRIMINAL",
       "initially_revealed": false,
       "clue": {
         "id": "clue_A2",
-        "clue_type": "SAME",
+        "clue_type": "AT_MOST",
         "params": {
-          "target1": "A2",
-          "target2": "B2"
+          "k": 1,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "B2",
+              "B3"
+            ]
+          }
         },
-        "text": "Diana and Ethan have the SAME status."
+        "text": "Greta (A3)'s neighbors in Column B [B2, B3] has at most 1 criminal."
       }
     },
     {
       "coord": "B2",
-      "name": "Ethan",
-      "profession": "Butler",
+      "name": "Esme",
+      "profession": "Scribe",
       "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_B2",
+        "clue_type": "AT_LEAST",
+        "params": {
+          "k": 1,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "B1",
+              "B2",
+              "B3"
+            ]
+          }
+        },
+        "text": "Dante (A2)'s neighbors in Column B [B1, B2, B3] has at least 1 criminal."
+      }
+    },
+    {
+      "coord": "C2",
+      "name": "Felix",
+      "profession": "Lanternist",
+      "status": "CRIMINAL",
+      "initially_revealed": false,
+      "clue": {
+        "id": "clue_C2",
         "clue_type": "EXACTLY",
         "params": {
           "k": 1,
           "region": {
             "region_type": "ROW",
-            "param": 2
+            "param": 3
           }
         },
-        "text": "Row 2 contains exactly 1 criminal."
-      }
-    },
-    {
-      "coord": "C2",
-      "name": "Fiona",
-      "profession": "Governess",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
-      "clue": {
-        "id": "clue_C2",
-        "clue_type": "SAME",
-        "params": {
-          "target1": "C2",
-          "target2": "A3"
-        },
-        "text": "Fiona and George have the SAME status."
+        "text": "Row 3 contains exactly 1 criminal."
       }
     },
     {
       "coord": "A3",
-      "name": "George",
-      "profession": "Chauffeur",
-      "status": "CRIMINAL",
+      "name": "Greta",
+      "profession": "Tailor",
+      "status": "INNOCENT",
       "initially_revealed": false,
       "clue": {
         "id": "clue_A3",
-        "clue_type": "DIFFERENT",
+        "clue_type": "SAME",
         "params": {
-          "target1": "A3",
-          "target2": "B3"
+          "target1": "C1",
+          "target2": "C3"
         },
-        "text": "George and Harry have DIFFERENT statuses."
+        "text": "Cleo (C1) and Iris (C3) have the SAME status."
       }
     },
     {
       "coord": "B3",
-      "name": "Harry",
-      "profession": "Stablehand",
-      "status": "INNOCENT",
+      "name": "Hector",
+      "profession": "Mason",
+      "status": "CRIMINAL",
       "initially_revealed": false,
       "clue": {
         "id": "clue_B3",
-        "clue_type": "PARITY",
+        "clue_type": "EXACTLY",
         "params": {
-          "parity": "ODD",
+          "k": 1,
           "region": {
-            "region_type": "CORNERS"
+            "region_type": "EXPLICIT",
+            "param": [
+              "A1",
+              "A3"
+            ]
           }
         },
-        "text": "The number of criminals among the 4 CORNERS is ODD."
+        "text": "Dante (A2)'s neighbors in Column A [A1, A3] contains exactly 1 criminal."
       }
     },
     {
       "coord": "C3",
       "name": "Iris",
-      "profession": "Guest",
-      "status": "CRIMINAL",
-      "initially_revealed": false,
+      "profession": "Steward",
+      "status": "INNOCENT",
+      "initially_revealed": true,
       "clue": {
         "id": "clue_C3",
-        "clue_type": "FACT",
+        "clue_type": "EXACTLY",
         "params": {
-          "target": "C3",
-          "status": "CRIMINAL"
+          "k": 0,
+          "region": {
+            "region_type": "EXPLICIT",
+            "param": [
+              "A3",
+              "C3"
+            ]
+          }
         },
-        "text": "Iris is a CRIMINAL."
+        "text": "Hector (B3)'s neighbors in Row 3 [A3, C3] contains NO criminals (0 criminals)."
       }
     }
   ]
